@@ -75,9 +75,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'dbsjogja.com',
-	'username' => 'u1421123',
-	'password' => '@Telkom_123',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '',
 	'database' => 'u1421123_IOAN',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
