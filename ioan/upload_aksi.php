@@ -5,11 +5,11 @@
 include 'koneksi.php';
 // menghubungkan dengan library excel reader
 include "excel_reader2.php";
+include 'teknisi.php';
 ?>
 
 <?php
 // upload file xls
-error_reporting(E_ALL ^ E_NOTICE);
 $target = basename($_FILES['datanossa']['name']) ;
 move_uploaded_file($_FILES['datanossa']['tmp_name'], $target);
 
@@ -20,7 +20,6 @@ chmod($_FILES['datanossa']['name'],0777);
 $data = new Spreadsheet_Excel_Reader($_FILES['datanossa']['name'],false);
 // menghitung jumlah baris data yang ada
 $jumlah_baris = $data->rowcount($sheet_index=0);
-
 
 // jumlah default data yang berhasil di import
 $berhasil = 0;
@@ -44,7 +43,7 @@ for ($i=2; $i<=$jumlah_baris; $i++){
 	$waktu_report = strtotime($reported_date);
 	$waktu = $waktu_booking-$waktu_report;
 
-	// $teknisi =  mysqli_query($koneksi,"SELECT nama FROM teknisi WHERE crew ='$assigned_to'");
+	$teknisi =  mysqli_query($koneksi,"SELECT nama FROM teknisi WHERE crew ='$assigned_to'");
 	
 
 
@@ -60,64 +59,36 @@ for ($i=2; $i<=$jumlah_baris; $i++){
 
     //mengecek jika kolom kode produk pada template excel ada yang kosong
     $cari = mysqli_num_rows(mysqli_query($koneksi,"SELECT incident FROM nossa WHERE incident='$incident'"));
-	$teknisi = mysqli_num_rows(mysqli_query($koneksi,"SELECT crew FROM teknisi WHERE crew='$assigned_to'"));
 
 	if($incident != "" && $cari > 0){
         mysqli_query($koneksi,"UPDATE nossa SET incident='$incident', assigned_to='$assigned_to', booking_date='$booking_date', status='$status', last_work_log='$last_work_log', date_update='$date' WHERE nossa.incident='$incident' ");
 	}
-	elseif($incident != "" && $summary1=="LOGIC" && $teknisi > 0){
-		mysqli_query($koneksi, "INSERT into nossa values ('','$incident','$workzone','','$service_no','$assigned_to','$booking_date','$reported_date','$status','$last_work_log','LOGIC', teknisi.nama,'','','','','','','','$date','$date')");
+	elseif($incident != "" && $summary1=="LOGIC"){
+		mysqli_query($koneksi, "INSERT into nossa values ('','$incident','$workzone','','$service_no','$assigned_to','$booking_date','$reported_date','$status','$last_work_log','LOGIC','','','','','','','','','$date','')");
 	}
-	elseif($incident != "" && $waktu>=86400 && $teknisi > 0){
-		mysqli_query($koneksi, "INSERT into nossa values ('','$incident','$workzone','','$service_no','$assigned_to','$booking_date','$reported_date','$status','$last_work_log','REPORTDATE',teknisi.nama,'','','','','','','','$date','$date')");
-	}
-	
-	elseif($incident != "" && $source=="PROACTIVE_TICKET" && $teknisi > 0){
-		mysqli_query($koneksi, "INSERT into nossa values ('','$incident','$workzone','','$service_no','$assigned_to','$booking_date','$reported_date','$status','$last_work_log','SQM',teknisi.nama,'','','','','','','','$date','$date')");
-	}
-	elseif($incident != "" && $customer_type=="HVC_GOLD" && $teknisi > 0){
-		mysqli_query($koneksi, "INSERT into nossa values ('','$incident','$workzone','','$service_no','$assigned_to','$booking_date','$reported_date','$status','$last_work_log','HVC_GOLD',teknisi.nama,'','','','','','','','$date','$date')");
-	}
-	elseif($incident != "" && $customer_type=="HVC_PLATINUM" && $teknisi > 0){
-		mysqli_query($koneksi, "INSERT into nossa values ('','$incident','$workzone','','$service_no','$assigned_to','$booking_date','$reported_date','$status','$last_work_log','HVC_PLATINUM',teknisi.nama,'','','','','','','','$date','$date')");
-	}
-	elseif($incident != "" && $assigned_by=="CUSTOMERASSIGNED" && $source=="RIGHTNOW" && $teknisi > 0){
-		mysqli_query($koneksi, "INSERT into nossa values ('','$incident','$workzone','','$service_no','$assigned_to','$booking_date','$reported_date','$status','$last_work_log','TTR 3 JAM',teknisi.nama,'','','','','','','','$date','$date')");
-	}
-	elseif($incident != "" && $booking_date!="" && $teknisi > 0){
-		// input data ke database (table nossa)
-		mysqli_query($koneksi,"INSERT into nossa values('','$incident','$workzone','','$service_no','$assigned_to','$booking_date','$reported_date','$status','$last_work_log','TTR BOOKINGDATE',teknisi.nama,'','','','','','','','$date','$date')");
-    }
-	elseif($incident != "" && $teknisi > 0){
-		// input data ke database (table nossa)
-		mysqli_query($koneksi,"INSERT into nossa values('','$incident','$workzone','','$service_no','$assigned_to','$booking_date','$reported_date','$status','$last_work_log','REGULER',teknisi.nama,'','','','','','','','$date','$date')");
-    }
-	elseif($incident != "" && $summary1=="LOGIC" ){
-		mysqli_query($koneksi, "INSERT into nossa values ('','$incident','$workzone','','$service_no','$assigned_to','$booking_date','$reported_date','$status','$last_work_log','LOGIC','','','','','','','','','$date','$date')");
-	}
-	elseif($incident != "" && $waktu>=86400 ){
-		mysqli_query($koneksi, "INSERT into nossa values ('','$incident','$workzone','','$service_no','$assigned_to','$booking_date','$reported_date','$status','$last_work_log','REPORTDATE','','','','','','','','','$date','$date')");
+	elseif($incident != "" && $waktu>=86400){
+		mysqli_query($koneksi, "INSERT into nossa values ('','$incident','$workzone','','$service_no','$assigned_to','$booking_date','$reported_date','$status','$last_work_log','REPORTDATE','','','','','','','','','$date','')");
 	}
 	
-	elseif($incident != "" && $source=="PROACTIVE_TICKET" ){
-		mysqli_query($koneksi, "INSERT into nossa values ('','$incident','$workzone','','$service_no','$assigned_to','$booking_date','$reported_date','$status','$last_work_log','SQM','','','','','','','','','$date','$date')");
+	elseif($incident != "" && $source=="PROACTIVE_TICKET"){
+		mysqli_query($koneksi, "INSERT into nossa values ('','$incident','$workzone','','$service_no','$assigned_to','$booking_date','$reported_date','$status','$last_work_log','SQM','','','','','','','','','$date','')");
 	}
 	elseif($incident != "" && $customer_type=="HVC_GOLD" ){
-		mysqli_query($koneksi, "INSERT into nossa values ('','$incident','$workzone','','$service_no','$assigned_to','$booking_date','$reported_date','$status','$last_work_log','HVC_GOLD','','','','','','','','','$date','$date')");
+		mysqli_query($koneksi, "INSERT into nossa values ('','$incident','$workzone','','$service_no','$assigned_to','$booking_date','$reported_date','$status','$last_work_log','HVC_GOLD','','','','','','','','','$date','')");
 	}
-	elseif($incident != "" && $customer_type=="HVC_PLATINUM" ){
-		mysqli_query($koneksi, "INSERT into nossa values ('','$incident','$workzone','','$service_no','$assigned_to','$booking_date','$reported_date','$status','$last_work_log','HVC_PLATINUM','','','','','','','','','$date','$date')");
+	elseif($incident != "" && $customer_type=="HVC_PLATINUM"){
+		mysqli_query($koneksi, "INSERT into nossa values ('','$incident','$workzone','','$service_no','$assigned_to','$booking_date','$reported_date','$status','$last_work_log','HVC_PLATINUM','','','','','','','','','$date','')");
 	}
-	elseif($incident != "" && $assigned_by=="CUSTOMERASSIGNED" && $source=="RIGHTNOW" ){
-		mysqli_query($koneksi, "INSERT into nossa values ('','$incident','$workzone','','$service_no','$assigned_to','$booking_date','$reported_date','$status','$last_work_log','TTR 3 JAM','','','','','','','','','$date','$date')");
+	elseif($incident != "" && $assigned_by=="CUSTOMERASSIGNED" && $source=="RIGHTNOW"){
+		mysqli_query($koneksi, "INSERT into nossa values ('','$incident','$workzone','','$service_no','$assigned_to','$booking_date','$reported_date','$status','$last_work_log','TTR 3 JAM','','','','','','','','','$date','')");
 	}
-	elseif($incident != "" && $booking_date!="" ){
+	elseif($incident != "" && $booking_date!=""){
 		// input data ke database (table nossa)
-		mysqli_query($koneksi,"INSERT into nossa values('','$incident','$workzone','','$service_no','$assigned_to','$booking_date','$reported_date','$status','$last_work_log','TTR BOOKINGDATE','','','','','','','','','$date','$date')");
+		mysqli_query($koneksi,"INSERT into nossa values('','$incident','$workzone','','$service_no','$assigned_to','$booking_date','$reported_date','$status','$last_work_log','TTR BOOKINGDATE','','','','','','','','','$date','')");
     }
 	elseif($incident != "" ){
 		// input data ke database (table nossa)
-		mysqli_query($koneksi,"INSERT into nossa values('','$incident','$workzone','','$service_no','$assigned_to','$booking_date','$reported_date','$status','$last_work_log','REGULER','$teknisi','','','','','','','','$date','$date')");
+		mysqli_query($koneksi,"INSERT into nossa values('','$incident','$workzone','','$service_no','$assigned_to','$booking_date','$reported_date','$status','$last_work_log','REGULER','$teknisi','','','','','','','','$date','')");
     }
     $berhasil++;
 }

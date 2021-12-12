@@ -66,9 +66,9 @@
 
                                                 <th rowspan="2" class="table-active">% CLS/TTL</th>
 
-                                                <th rowspan="2" class="table-success">PROD TKN</th>
+                                                <th rowspan="2" class="table-success">PROD TKN </br> (CLS/TKN AS)</th>
 
-                                                <th rowspan="2" class="table-warning">AVG TIKET/TKN</th>
+                                                <th rowspan="2" class="table-warning">AVG </br> TIKET/TKN AS</th>
 
                                                 <th rowspan="2" class="table-danger">% SISA TIKET</th>
 
@@ -197,13 +197,17 @@
                                                 <td><a href="#" style="color: white;"><?php echo $ttlall; ?></a></td>
 
 
-                                                <td><a href="#" style="color: white;"><?php echo $clsttlall; ?>%</a></td>
+                                                <td><a href="#" style="color: white;"><?php $angka_format = number_format($clsttlall,2);
+											    echo $angka_format; ?>%</a></td>
 
-                                                <td><a href="#" style="color: white;"><?php echo $prodtekall; ?></a></td>
+                                                <td><a href="#" style="color: white;"><?php $angka_format = number_format($prodtekall,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: white;"><?php echo $avgtkttknall; ?></a></td>
+                                                <td><a href="#" style="color: white;"><?php $angka_format = number_format($avgtkttknall,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: white;"><?php echo $sisatiktall; ?>%</a></td>
+                                                <td><a href="#" style="color: white;"><?php $angka_format = number_format($sisatiktall,2);
+											    echo $angka_format; ?>%</a></td>
 
 
                                             </tr>
@@ -339,13 +343,17 @@
                                                 <td><a href="#" style="color: black;"><?php echo $ttlkbu; ?></a></td>
 
 
-                                                <td><a href="#" style="color: black;"><?php echo $clsttlkbu; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($clsttlkbu,2);
+											    echo $angka_format; ?>%</a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $prodtekkbu; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($prodtekkbu,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $avgtkttknkbu; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($avgtkttknkbu,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $sisatiktkbu; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($sisatiktkbu,2);
+											    echo $angka_format; ?>%</a></td>
 
 
                                             </tr>
@@ -414,13 +422,17 @@
                                                 <td><a href="#" style="color: black;"><?php echo $ttlsmn; ?></a></td>
 
 
-                                                <td><a href="#" style="color: black;"><?php echo $clsttlsmn; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($clsttlsmn,2);
+											    echo $angka_format; ?>%</a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $prodteksmn; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($prodteksmn,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $avgtkttknsmn; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($avgtkttknsmn,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $sisatiktsmn; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($sisatiktsmn,2);
+											    echo $angka_format; ?>%</a></td>
 
 
                                             </tr>
@@ -489,13 +501,17 @@
                                                 <td><a href="#" style="color: black;"><?php echo $ttlgod; ?></a></td>
 
 
-                                                <td><a href="#" style="color: black;"><?php echo $clsttlgod; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($clsttlgod,2);
+											    echo $angka_format; ?>%</a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $prodtekgod; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($prodtekgod,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $avgtkttkngod; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($avgtkttkngod,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $sisatiktgod; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($sisatiktgod,2);
+											    echo $angka_format; ?>%</a></td>
 
                                             </tr>
 
@@ -562,13 +578,17 @@
                                                 <td><a href="#" style="color: black;"><?php echo $ttlpkm; ?></a></td>
 
 
-                                                <td><a href="#" style="color: black;"><?php echo $clsttlpkm; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($clsttlpkm,2);
+											    echo $angka_format; ?>%</a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $prodtekpkm; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($prodtekpkm,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $avgtkttknpkm; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($avgtkttknpkm,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $sisatiktpkm; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($sisatiktpkm,2);
+											    echo $angka_format; ?>%</a></td>
 
                                             </tr>
 
@@ -636,13 +656,17 @@
                                                 <td><a href="#" style="color: black;"><?php echo $ttlkls; ?></a></td>
 
 
-                                                <td><a href="#" style="color: black;"><?php echo $clsttlkls; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($clsttlkls,2);
+											    echo $angka_format; ?>%</a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $prodtekkls; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($prodtekkls,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $avgtkttknkls; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($avgtkttknkls,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $sisatiktkls; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($sisatiktkls,2);
+											    echo $angka_format; ?>%</a></td>
 
 
                                             </tr>
@@ -711,13 +735,17 @@
                                                 <td><a href="#" style="color: black;"><?php echo $ttlkgd; ?></a></td>
 
 
-                                                <td><a href="#" style="color: black;"><?php echo $clsttlkgd; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($clsttlkgd,2);
+											    echo $angka_format; ?>%</a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $prodtekkgd; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($prodtekkgd,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $avgtkttknkgd; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($avgtkttknkgd,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $sisatiktkgd; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($sisatiktkgd,2);
+											    echo $angka_format; ?>%</a></td>
 
 
                                             </tr>
@@ -786,13 +814,17 @@
                                                 <th><a href="#" style="color: black;"><?php echo $ttlnorth; ?></a></th>
 
 
-                                                <td><a href="#" style="color: black;"><?php echo $clsttlnorth; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($clsttlnorth,2);
+											    echo $angka_format; ?>%</a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $prodteknorth; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($prodteknorth,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $avgtkttknnorth; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($avgtkttknnorth,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $sisatiktnorth; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($sisatiktnorth,2);
+											    echo $angka_format; ?>%</a></td>
 
                                                 
 
@@ -862,13 +894,17 @@
                                                 <td><a href="#" style="color: black;"><?php echo $ttlbbs; ?></a></td>
 
 
-                                                <td><a href="#" style="color: black;"><?php echo $clsttlbbs; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($clsttlbbs,2);
+											    echo $angka_format; ?>%</a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $prodtekbbs; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($prodtekbbs,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $avgtkttknbbs; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($avgtkttknbbs,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $sisatiktbbs; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($sisatiktbbs,2);
+											    echo $angka_format; ?>%</a></td>
 
 
                                             </tr>
@@ -937,13 +973,17 @@
                                                 <td><a href="#" style="color: black;"><?php echo $ttlken; ?></a></td>
 
 
-                                                <td><a href="#" style="color: black;"><?php echo $clsttlken; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($clsttlken,2);
+											    echo $angka_format; ?>%</a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $prodtekken; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($prodtekken,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $avgtkttknken; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($avgtkttknken,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $sisatiktken; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($sisatiktken,2);
+											    echo $angka_format; ?>%</a></td>
 
 
                                             </tr>
@@ -1012,13 +1052,17 @@
                                                 <td><a href="#" style="color: black;"><?php echo $ttlpgr; ?></a></td>
 
 
-                                                <td><a href="#" style="color: black;"><?php echo $clsttlpgr; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($clsttlpgr,2);
+											    echo $angka_format; ?>%</a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $prodtekpgr; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($prodtekpgr,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $avgtkttknpgr; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($avgtkttknpgr,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $sisatiktpgr; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($sisatiktpgr,2);
+											    echo $angka_format; ?>%</a></td>
 
 
                                             </tr>
@@ -1087,13 +1131,17 @@
                                                 <td><a href="#" style="color: black;"><?php echo $ttlbtl; ?></a></td>
 
 
-                                                <td><a href="#" style="color: black;"><?php echo $clsttlbtl; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($clsttlbtl,2);
+											    echo $angka_format; ?>%</a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $prodtekbtl; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($prodtekbtl,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $avgtkttknbtl; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($avgtkttknbtl,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $sisatiktbtl; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($sisatiktbtl,2);
+											    echo $angka_format; ?>%</a></td>
 
 
                                             </tr>
@@ -1162,13 +1210,17 @@
                                                 <td><a href="#" style="color: black;"><?php echo $ttlwns; ?></a></td>
 
 
-                                                <td><a href="#" style="color: black;"><?php echo $clsttlwns; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($clsttlwns,2);
+											    echo $angka_format; ?>%</a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $prodtekwns; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($prodtekwns,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $avgtkttknwns; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($avgtkttknwns,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $sisatiktwns; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($sisatiktwns,2);
+											    echo $angka_format; ?>%</a></td>
 
 
                                             </tr>
@@ -1237,13 +1289,17 @@
                                                 <td><a href="#" style="color: black;"><?php echo $ttlwts; ?></a></td>
 
 
-                                                <td><a href="#" style="color: black;"><?php echo $clsttlwts; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($clsttlwts,2);
+											    echo $angka_format; ?>%</a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $prodtekwts; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($prodtekwts,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $avgtkttknwts; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($avgtkttknwts,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $sisatiktwts; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($sisatiktwts,2);
+											    echo $angka_format; ?>%</a></td>
 
 
                                             </tr>
@@ -1312,13 +1368,17 @@
                                                 <th><a href="#" style="color: black;"><?php echo $ttlsouth; ?></a></th>
 
 
-                                                <td><a href="#" style="color: black;"><?php echo $clsttlsouth; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($clsttlsouth,2);
+											    echo $angka_format; ?>%</a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $prodteksouth; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($prodteksouth,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $avgtkttknsouth; ?></a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($avgtkttknsouth,2);
+											    echo $angka_format; ?></a></td>
 
-                                                <td><a href="#" style="color: black;"><?php echo $sisatiktsouth; ?>%</a></td>
+                                                <td><a href="#" style="color: black;"><?php $angka_format = number_format($sisatiktsouth,2);
+											    echo $angka_format; ?>%</a></td>
 
                                                 
 

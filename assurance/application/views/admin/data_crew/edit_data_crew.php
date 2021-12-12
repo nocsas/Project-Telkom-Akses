@@ -26,13 +26,22 @@
 
                     <div class="container-fluid">
 
-						<h1 class="mt-4">Manajemen Crew</h1>
+						<h1 class="mt-4"></h1>
 
                         <ol class="breadcrumb mb-4">
 
-							<li class="breadcrumb-item active">Crew</li>
-
-                            <li class="breadcrumb-item active">Edit Crew</li>
+    <div class="col-xl-12 col-lg-12 col-md-12 col-12 pb-2 ">
+        <div class="statbox widget box box-shadow ">
+            <div class="widget-header p-3 bggradasi">
+                <div class="row ">
+                    <div class="col-xl-12 col-md-12 col-sm-12 col-12 ">
+                        <h2>MANAJEMEN CREW</h2>
+                        <small>Edit Data Crew</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
                         </ol>
 
@@ -122,6 +131,8 @@
 
 											<option value=""></option>
 
+                                            <option value="HD">HD</option>
+
                                             <option value="PKM">PKM</option>
 
                                             <option value="KLS">KLS</option>
@@ -161,6 +172,8 @@
                                             <option value="<?php echo $crew->sektor ?>"><?php echo $crew->sektor ?></option>
 
 											<option value=""></option>
+
+                                            <option value="HD">HD</option>
 
                                             <option value="PKM">PKM</option>
 

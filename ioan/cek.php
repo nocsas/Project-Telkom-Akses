@@ -1,6 +1,6 @@
 <?php
 include 'koneksi.php' ;
-include 'upload_aksi.php';
+
 
 // $i=1;
 

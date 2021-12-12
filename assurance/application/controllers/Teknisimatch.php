@@ -20,12 +20,23 @@ class Teknisimatch extends CI_Controller {
         $queryLoginAs = "SELECT `user_role`.`id`, `role` FROM `user_role` JOIN `user` ON `user_role`.`id` = `user`.`role_id` WHERE `user`.`role_id` = $role_id";
 
         $data['loginas'] = $this->db->query($queryLoginAs)->row_array();
+        
+        if($this->session->userdata('role_id') == 2 ){
+            $area = $this->session->userdata('area');
+                $data["data"] = $this->teknisimatch_model->getTiketArea($area);
+    
+                $this->load->view("admin/teknisi_match/teknisi_match_hd", $data);
+            }else{
+                $data["data"] = $this->teknisimatch_model->getTiketAll();
+    
+                $this->load->view("admin/teknisi_match/teknisi_match_hd", $data);
+            }
        
-        $data["data"] = $this->teknisimatch_model->querybuilder();
+        // $data["data"] = $this->teknisimatch_model->querybuilder();
     
 
         // $data["nossa"] = $this->tiketmatch_model->matchTiket();
-        $this->load->view("admin/teknisi_match/teknisi_match_hd", $data);
+        // $this->load->view("admin/teknisi_match/teknisi_match_hd", $data);
     }
 
     

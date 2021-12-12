@@ -29,9 +29,9 @@ class Dashboard extends CI_Controller {
 
 	// KBU
 
-        $data["tknasstokbu"] = $this->nossa_model->getTekAsKbu();
-
         $data["tknacstokbu"] = $this->nossa_model->getTekAcKbu();
+
+        $data["tknasstokbu"] = $this->nossa_model->getTekAsKbu();
 
 
 
@@ -117,9 +117,9 @@ class Dashboard extends CI_Controller {
         
         // SMN
 
-        $data["tknasstosmn"] = $this->nossa_model->getTekAsSmn();
-
         $data["tknacstosmn"] = $this->nossa_model->getTekAcSmn();
+
+        $data["tknasstosmn"] = $this->nossa_model->getTekAsSmn();
 
 
 
@@ -204,9 +204,9 @@ class Dashboard extends CI_Controller {
 
 
         //////GOD//
-        $data["tknasstogod"] = $this->nossa_model->getTekAsGod();
-
         $data["tknacstogod"] = $this->nossa_model->getTekAcGod();
+
+        $data["tknasstogod"] = $this->nossa_model->getTekAsGod();
 
 
 
@@ -291,9 +291,9 @@ class Dashboard extends CI_Controller {
 
 
         //////PKM//
-        $data["tknasstopkm"] = $this->nossa_model->getTekAsPkm();
-
         $data["tknacstopkm"] = $this->nossa_model->getTekAcPkm();
+
+        $data["tknasstopkm"] = $this->nossa_model->getTekAsPkm();
 
 
 
@@ -375,9 +375,9 @@ class Dashboard extends CI_Controller {
 
 
         //KLS
-        $data["tknasstokls"] = $this->nossa_model->getTekAsKls();
-
         $data["tknacstokls"] = $this->nossa_model->getTekAcKls();
+
+        $data["tknasstokls"] = $this->nossa_model->getTekAsKls();
 
 
 
@@ -459,9 +459,9 @@ class Dashboard extends CI_Controller {
 
 	
 	//KGD
-        $data["tknasstokgd"] = $this->nossa_model->getTekAsKgd();
+        $data["tknacstokgd"] = $this->nossa_model->getTekAcKgd();
 
-        $data["tknacstokgd"] = $this->nossa_model->getTekAckgd();
+        $data["tknasstokgd"] = $this->nossa_model->getTekAskgd();
 
 
 
@@ -544,9 +544,9 @@ class Dashboard extends CI_Controller {
         
 
 	//BBS
-        $data["tknasstobbs"] = $this->nossa_model->getTekAsBbs();
-
         $data["tknacstobbs"] = $this->nossa_model->getTekAcBbs();
+
+        $data["tknasstobbs"] = $this->nossa_model->getTekAsBbs();
 
 
 
@@ -629,9 +629,9 @@ class Dashboard extends CI_Controller {
 	
 
 	//KEN
-        $data["tknasstoken"] = $this->nossa_model->getTekAsKen();
-
         $data["tknacstoken"] = $this->nossa_model->getTekAcKen();
+
+        $data["tknasstoken"] = $this->nossa_model->getTekAsKen();
 
 
 
@@ -714,9 +714,9 @@ class Dashboard extends CI_Controller {
 
  	
 	//PGR
-        $data["tknasstopgr"] = $this->nossa_model->getTekAsPgr();
-
         $data["tknacstopgr"] = $this->nossa_model->getTekAcPgr();
+
+        $data["tknasstopgr"] = $this->nossa_model->getTekAsPgr();
 
 
 
@@ -799,9 +799,9 @@ class Dashboard extends CI_Controller {
 
 	
 	//BTL
-        $data["tknasstobtl"] = $this->nossa_model->getTekAsBtl();
-
         $data["tknacstobtl"] = $this->nossa_model->getTekAcBtl();
+
+        $data["tknasstobtl"] = $this->nossa_model->getTekAsBtl();
 
 
 
@@ -884,9 +884,9 @@ class Dashboard extends CI_Controller {
 
 
 	//WNS
-        $data["tknasstowns"] = $this->nossa_model->getTekAsWns();
-
         $data["tknacstowns"] = $this->nossa_model->getTekAcWns();
+
+        $data["tknasstowns"] = $this->nossa_model->getTekAsWns();
 
 
 
@@ -969,9 +969,9 @@ class Dashboard extends CI_Controller {
 
 
  	//WTS
-        $data["tknasstowts"] = $this->nossa_model->getTekAsWts();
-
         $data["tknacstowts"] = $this->nossa_model->getTekAcWts();
+
+        $data["tknasstowts"] = $this->nossa_model->getTekAsWts();
 
 
 
@@ -1053,9 +1053,9 @@ class Dashboard extends CI_Controller {
 
 
 	//AVG NORTH
-	$data["tknacnorth"] = $data["tknacstokbu"] + $data["tknacstosmn"] + $data["tknacstogod"] + $data["tknacstopkm"] + $data["tknacstokls"] + $data["tknacstokgd"];
-
 	$data["tknasnorth"] = $data["tknasstokbu"] + $data["tknasstosmn"] + $data["tknasstogod"] + $data["tknasstopkm"] + $data["tknasstokls"] + $data["tknasstokgd"];
+
+	$data["tknacnorth"] = $data["tknacstokbu"] + $data["tknacstosmn"] + $data["tknacstogod"] + $data["tknacstopkm"] + $data["tknacstokls"] + $data["tknacstokgd"];
 
 
 	//HVC
@@ -1129,9 +1129,9 @@ class Dashboard extends CI_Controller {
 
 
 	//AVG SOUTH
-	$data["tknacsouth"] = $data["tknacstobbs"] + $data["tknacstoken"] + $data["tknacstopgr"] + $data["tknacstobtl"] + $data["tknacstowns"] + $data["tknacstowts"];
-
 	$data["tknassouth"] = $data["tknasstobbs"] + $data["tknasstoken"] + $data["tknasstopgr"] + $data["tknasstobtl"] + $data["tknasstowns"] + $data["tknasstowts"];
+
+	$data["tknacsouth"] = $data["tknacstobbs"] + $data["tknacstoken"] + $data["tknacstopgr"] + $data["tknacstobtl"] + $data["tknacstowns"] + $data["tknacstowts"];
 
 
 	//HVC
@@ -1209,9 +1209,9 @@ class Dashboard extends CI_Controller {
 
 
 	//TOTAL ALL
-	$data["tknacall"] = $data["tknacnorth"] + $data["tknacsouth"];
-
 	$data["tknasall"] = $data["tknasnorth"] + $data["tknassouth"];
+
+	$data["tknacall"] = $data["tknacnorth"] + $data["tknacsouth"];
 
 	//HVC
 	$data["hvcmanordall"] = $data["hvcmanordnorth"] + $data["hvcmanordsouth"];

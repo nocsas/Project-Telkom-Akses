@@ -221,26 +221,21 @@ class Teknisimatch_model extends CI_Model {
         return $this->db->get($this->_nossa)->result();
 
     }
-
-
-
     
-
-    
-
-    public function querybuilder() {
-
-        return 
-
-        $this->db->query("SELECT * FROM nossa WHERE (teknisi_nossa <> teknisi_myi)")->result();
-
-       
+    public function getTiketArea($area) {
+        
+        return $this->db->query("SELECT * FROM nossa WHERE `teknisi_nossa` <> `teknisi_myi` AND sektor = '$area' AND status <> 'CLOSED' ")->result();
 
     }
 
 
+    public function getTiketAll() {
 
-    
+        return 
+
+        $this->db->query("SELECT * FROM nossa WHERE (teknisi_nossa <> teknisi_myi  AND status <> 'CLOSED')")->result();
+
+    }
 
 
 

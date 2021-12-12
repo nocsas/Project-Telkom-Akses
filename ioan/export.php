@@ -15,7 +15,7 @@
 
     //menampilkan data sebagai array dari tabel produk
     $out=array();
- $sql=mysqli_query($koneksi, "SELECT `incident` FROM nossa WHERE `date_inpute` or `date_update`=$sehari ");
+ $sql=mysqli_query($koneksi, "SELECT 'incident' FROM nossa ");
  while($data=mysqli_fetch_assoc($sql)) $out[]=$data;
 
  $show_coloumn = false;

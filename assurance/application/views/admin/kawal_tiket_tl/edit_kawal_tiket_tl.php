@@ -26,13 +26,22 @@
 
                     <div class="container-fluid">
 
-						<h1 class="mt-4">Manajemen Tiket</h1>
+						<h1 class="mt-4"></h1>
 
                         <ol class="breadcrumb mb-4">
 
-							<li class="breadcrumb-item active">Tiket</li>
-
-                            <li class="breadcrumb-item active">Edit Tiket</li>
+<div class="col-xl-12 col-lg-12 col-md-12 col-12 pb-2 ">
+        <div class="statbox widget box box-shadow ">
+            <div class="widget-header p-3 bggradasi">
+                <div class="row ">
+                    <div class="col-xl-12 col-md-12 col-sm-12 col-12 ">
+                        <h2>MANAJEMEN TIKET</h2>
+                        <small>Update Kawal Tiket HI</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
                         </ol>
 
@@ -348,6 +357,10 @@
 
 											<option value=""></option>
 
+                                            <option value="ONPROGRES">ONPROGRES</option>
+
+                                            <option value="PENDING">PENDING</option>
+
                                             <option value="CPE LOGIC-RESTART ONT/ REBOOT ONT">CPE LOGIC-RESTART ONT/ REBOOT ONT</option>
 
                                             <option value="CPE LOGIC-SETUL WIFI">CPE LOGIC-SETUL WIFI</option>
@@ -435,6 +448,8 @@
                                             <option value="<?php echo $nossa->kendala ?>"><?php echo $nossa->kendala ?></option>
 
 											<option value=""></option>
+
+                                            <option value="TIDAK ADA KENDALA">TIDAK ADA KENDALA</option>
 
                                             <option value="BELUM PROGRES">BELUM PROGRES</option>
 

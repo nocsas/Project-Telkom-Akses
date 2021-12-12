@@ -34,6 +34,9 @@
 
                                 <h1 class="h4 text-gray-900 mb-4"><img src="<?= base_url('assets/img/raja.png');?>" alt="RAJA" height="62"></br></h1>
 
+                                <h1 class="h4 text-gray-900 mb-4">work smart to provide the best service</br></h1>
+
+
                             </div>
 
                             <br>

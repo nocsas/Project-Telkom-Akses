@@ -254,13 +254,13 @@ class Nossa_model extends CI_Model {
 
     public function getTiketHi() {
         
-        return $this->db->query("SELECT * FROM nossa WHERE (status_tiket <> 'CLOSED' OR status <> 'CLOSED' OR date_update = date('Y-m-d'))")->result();
+        return $this->db->query("SELECT * FROM nossa WHERE (status_tiket <> 'CLOSED' OR status <> 'CLOSED' OR date_update >= DATE(NOW()))")->result();
 
     }
 
     public function getTiketArea($area) {
         
-        return $this->db->query("SELECT * FROM nossa WHERE ((status_tiket <> 'CLOSED' OR status <> 'CLOSED' OR date_update = date('Y-m-d')) AND sektor = '$area')")->result();
+        return $this->db->query("SELECT * FROM nossa WHERE ((status_tiket <> 'CLOSED' OR status <> 'CLOSED' OR date_update >= DATE(NOW())) AND sektor = '$area')")->result();
 
     }
 
@@ -373,21 +373,35 @@ class Nossa_model extends CI_Model {
 
     }
 
+    public function delete($no)
+
+    {
+
+        return $this->db->delete($this->_nossa, array("no" => $no));
+
+    }
+
+
 
     // count dashboard
 
     // KBU
     // TEKNISI
-    public function getTekAsKbu() {
+    public function getTekAcKbu() {
         
         $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'KBU' AND jadwal = 'MASUK')")->result();
         $stokbu = count($query);
         return $stokbu; 
 
     }
-    public function getTekAcKbu() {
+    public function getTekAsKbu() {
         
-        $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'KBU' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
+        $query = $this->db->query("SELECT * 
+            FROM teknisi INNER JOIN nossa 
+            ON teknisi.nama = nossa.teknisi_myi
+            WHERE teknisi.sto = 'KBU' 
+            GROUP BY teknisi.crew")->result();
+        // $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'KBU' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
         $stokbu = count($query);
         return $stokbu; 
 
@@ -442,21 +456,21 @@ class Nossa_model extends CI_Model {
     // TTR MANJA
     public function getTtrManOrdKbu() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'ORDER' AND workzone = 'KBU')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'ORDER' AND workzone = 'KBU')")->result();
         $order = count($query);
         return $order; 
 
     }
     public function getTtrManClsdKbu() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'CLOSED' AND date_update >= DATE(NOW()) AND workzone = 'KBU')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'CLOSED' AND date_update >= DATE(NOW()) AND workzone = 'KBU')")->result();
         $closed = count($query);
         return $closed; 
 
     }
     public function getTtrManPndgKbu() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'PENDING' AND workzone = 'KBU')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'PENDING' AND workzone = 'KBU')")->result();
         $pending = count($query);
         return $pending; 
 
@@ -569,16 +583,21 @@ class Nossa_model extends CI_Model {
     ////////////////////////////////////////////  SMN /////
     
     // TEKNISI
-    public function getTekAsSmn() {
+    public function getTekAcSmn() {
         
         $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'SMN' AND jadwal = 'MASUK')")->result();
         $stosmn = count($query);
         return $stosmn; 
 
     }
-    public function getTekAcSmn() {
+    public function getTekAsSmn() {
         
-        $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'SMN' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
+        $query = $this->db->query("SELECT * 
+            FROM teknisi INNER JOIN nossa 
+            ON teknisi.nama = nossa.teknisi_myi
+            WHERE teknisi.sto = 'SMN' 
+            GROUP BY teknisi.crew")->result();
+        // $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'SMN' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
         $stosmn = count($query);
         return $stosmn; 
 
@@ -633,21 +652,21 @@ class Nossa_model extends CI_Model {
     // REPORTDATE
     public function getTtrManOrdSmn() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'ORDER' AND workzone = 'SMN')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'ORDER' AND workzone = 'SMN')")->result();
         $order = count($query);
         return $order; 
 
     }
     public function getTtrManClsdSmn() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'CLOSED' AND date_update >= DATE(NOW()) AND workzone = 'SMN')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'CLOSED' AND date_update >= DATE(NOW()) AND workzone = 'SMN')")->result();
         $closed = count($query);
         return $closed; 
 
     }
     public function getTtrManPndgSmn() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'PENDING' AND workzone = 'SMN')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'PENDING' AND workzone = 'SMN')")->result();
         $pending = count($query);
         return $pending; 
 
@@ -757,16 +776,21 @@ class Nossa_model extends CI_Model {
 
     ////////////////////////////////////////////  GOD ////////////////////////////////////////
     // TEKNISI
-    public function getTekAsGod() {
+    public function getTekAcGod() {
         
         $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'GOD' AND jadwal = 'MASUK')")->result();
         $stogod = count($query);
         return $stogod; 
 
     }
-    public function getTekAcGod() {
+    public function getTekAsGod() {
         
-        $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'GOD' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
+        $query = $this->db->query("SELECT * 
+            FROM teknisi INNER JOIN nossa 
+            ON teknisi.nama = nossa.teknisi_myi
+            WHERE teknisi.sto = 'GOD' 
+            GROUP BY teknisi.crew")->result();
+        // $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'GOD' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
         $stogod = count($query);
         return $stogod; 
 
@@ -821,21 +845,21 @@ class Nossa_model extends CI_Model {
     // REPORTDATE
     public function getTtrManOrdGod() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'ORDER' AND workzone = 'GOD')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'ORDER' AND workzone = 'GOD')")->result();
         $order = count($query);
         return $order; 
 
     }
     public function getTtrManClsdGod() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'CLOSED' AND date_update >= DATE(NOW()) AND workzone = 'GOD')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'CLOSED' AND date_update >= DATE(NOW()) AND workzone = 'GOD')")->result();
         $closed = count($query);
         return $closed; 
 
     }
     public function getTtrManPndgGod() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'PENDING' AND workzone = 'GOD')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'PENDING' AND workzone = 'GOD')")->result();
         $pending = count($query);
         return $pending; 
 
@@ -946,16 +970,21 @@ class Nossa_model extends CI_Model {
 
       //////////////////PKM//////////////////
       // TEKNISI
-    public function getTekAsPkm() {
+    public function getTekAcPkm() {
         
         $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'PKM' AND jadwal = 'MASUK')")->result();
         $stopkm = count($query);
         return $stopkm; 
 
     }
-    public function getTekAcPkm() {
+    public function getTekAsPkm() {
         
-        $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'PKM' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
+        $query = $this->db->query("SELECT * 
+            FROM teknisi INNER JOIN nossa 
+            ON teknisi.nama = nossa.teknisi_myi 
+            WHERE teknisi.sto = 'PKM' 
+            GROUP BY teknisi.crew")->result();
+        // $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'PKM' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
         $stopkm = count($query);
         return $stopkm; 
 
@@ -1010,21 +1039,21 @@ class Nossa_model extends CI_Model {
     // REPORTDATE
     public function getTtrManOrdPkm() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'ORDER' AND workzone = 'PKM')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'ORDER' AND workzone = 'PKM')")->result();
         $order = count($query);
         return $order; 
 
     }
     public function getTtrManClsdPkm() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'CLOSED' AND date_update >= DATE(NOW()) AND workzone = 'PKM')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'CLOSED' AND date_update >= DATE(NOW()) AND workzone = 'PKM')")->result();
         $closed = count($query);
         return $closed; 
 
     }
     public function getTtrManPndgPkm() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'PENDING' AND workzone = 'PKM')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'PENDING' AND workzone = 'PKM')")->result();
         $pending = count($query);
         return $pending; 
 
@@ -1133,16 +1162,21 @@ class Nossa_model extends CI_Model {
 
     // KLS
     // TEKNISI
-    public function getTekAsKls() {
+    public function getTekAcKls() {
         
         $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'KLS' AND jadwal = 'MASUK')")->result();
         $stokbu = count($query);
         return $stokbu; 
 
     }
-    public function getTekAcKls() {
+    public function getTekAsKls() {
         
-        $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'KLS' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
+        $query = $this->db->query("SELECT * 
+            FROM teknisi INNER JOIN nossa 
+            ON teknisi.nama = nossa.teknisi_myi
+            WHERE teknisi.sto = 'KLS' 
+            GROUP BY teknisi.crew")->result();
+        // $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'KLS' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
         $stokbu = count($query);
         return $stokbu; 
 
@@ -1197,21 +1231,21 @@ class Nossa_model extends CI_Model {
     // REPORTDATE
     public function getTtrManOrdKls() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'ORDER' AND workzone = 'KLS')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'ORDER' AND workzone = 'KLS')")->result();
         $order = count($query);
         return $order; 
 
     }
     public function getTtrManClsdKls() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'CLOSED' AND date_update >= DATE(NOW()) AND workzone = 'KLS')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'CLOSED' AND date_update >= DATE(NOW()) AND workzone = 'KLS')")->result();
         $closed = count($query);
         return $closed; 
 
     }
     public function getTtrManPndgKls() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'PENDING' AND workzone = 'KLS')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'PENDING' AND workzone = 'KLS')")->result();
         $pending = count($query);
         return $pending; 
 
@@ -1321,16 +1355,21 @@ class Nossa_model extends CI_Model {
 
     // KGD/BPN
     // TEKNISI
-    public function getTekAsKgd() {
+    public function getTekAcKgd() {
         
         $query = $this->db->query("SELECT * FROM teknisi WHERE ((sto = 'KGD' OR sto = 'BPN') AND jadwal = 'MASUK')")->result();
         $stokbu = count($query);
         return $stokbu; 
 
     }
-    public function getTekAcKgd() {
+    public function getTekAsKgd() {
         
-        $query = $this->db->query("SELECT * FROM teknisi WHERE ((sto = 'KGD' OR sto = 'BPN') AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
+        $query = $this->db->query("SELECT * 
+            FROM teknisi INNER JOIN nossa 
+            ON teknisi.nama = nossa.teknisi_myi
+            WHERE teknisi.sto = 'KGD' 
+            GROUP BY teknisi.crew")->result();
+        // $query = $this->db->query("SELECT * FROM teknisi WHERE ((sto = 'KGD' OR sto = 'BPN') AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
         $stokbu = count($query);
         return $stokbu; 
 
@@ -1385,21 +1424,21 @@ class Nossa_model extends CI_Model {
     // REPORTDATE
     public function getTtrManOrdKgd() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'ORDER' AND (workzone = 'KGD' OR workzone = 'BPN'))")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'ORDER' AND (workzone = 'KGD' OR workzone = 'BPN'))")->result();
         $order = count($query);
         return $order; 
 
     }
     public function getTtrManClsdKgd() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'CLOSED' AND date_update >= DATE(NOW()) AND (workzone = 'KGD' OR workzone = 'BPN'))")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'CLOSED' AND date_update >= DATE(NOW()) AND (workzone = 'KGD' OR workzone = 'BPN'))")->result();
         $closed = count($query);
         return $closed; 
 
     }
     public function getTtrManPndgKgd() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'PENDING' AND (workzone = 'KGD' OR workzone = 'BPN'))")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'PENDING' AND (workzone = 'KGD' OR workzone = 'BPN'))")->result();
         $pending = count($query);
         return $pending; 
 
@@ -1509,16 +1548,21 @@ class Nossa_model extends CI_Model {
     
     // BBS
     // TEKNISI
-    public function getTekAsBbs() {
+    public function getTekAcBbs() {
         
         $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'BBS' AND jadwal = 'MASUK')")->result();
         $stokbu = count($query);
         return $stokbu; 
 
     }
-    public function getTekAcBbs() {
+    public function getTekAsBbs() {
         
-        $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'BBS' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
+        $query = $this->db->query("SELECT * 
+            FROM teknisi INNER JOIN nossa 
+            ON teknisi.nama = nossa.teknisi_myi
+            WHERE teknisi.sto = 'BBS' 
+            GROUP BY teknisi.crew")->result();
+        // $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'BBS' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
         $stokbu = count($query);
         return $stokbu; 
 
@@ -1573,21 +1617,21 @@ class Nossa_model extends CI_Model {
     // REPORTDATE
     public function getTtrManOrdBbs() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'ORDER' AND workzone = 'BBS')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'ORDER' AND workzone = 'BBS')")->result();
         $order = count($query);
         return $order; 
 
     }
     public function getTtrManClsdBbs() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'CLOSED' AND date_update >= DATE(NOW()) AND workzone = 'BBS')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'CLOSED' AND date_update >= DATE(NOW()) AND workzone = 'BBS')")->result();
         $closed = count($query);
         return $closed; 
 
     }
     public function getTtrManPndgBbs() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'PENDING' AND workzone = 'BBS')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'PENDING' AND workzone = 'BBS')")->result();
         $pending = count($query);
         return $pending; 
 
@@ -1697,16 +1741,21 @@ class Nossa_model extends CI_Model {
 
     // KEN
     // TEKNISI
-    public function getTekAsKen() {
+    public function getTekAcKen() {
         
         $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'KEN' AND jadwal = 'MASUK')")->result();
         $stokbu = count($query);
         return $stokbu; 
 
     }
-    public function getTekAcKen() {
+    public function getTekAsKen() {
         
-        $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'KEN' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
+        $query = $this->db->query("SELECT * 
+            FROM teknisi INNER JOIN nossa 
+            ON teknisi.nama = nossa.teknisi_myi
+            WHERE teknisi.sto = 'KEN' 
+            GROUP BY teknisi.crew")->result();
+        // $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'KEN' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
         $stokbu = count($query);
         return $stokbu; 
 
@@ -1761,21 +1810,21 @@ class Nossa_model extends CI_Model {
     // REPORTDATE
     public function getTtrManOrdKen() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'ORDER' AND workzone = 'KEN')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'ORDER' AND workzone = 'KEN')")->result();
         $order = count($query);
         return $order; 
 
     }
     public function getTtrManClsdKen() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'CLOSED' AND date_update >= DATE(NOW()) AND workzone = 'KEN')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'CLOSED' AND date_update >= DATE(NOW()) AND workzone = 'KEN')")->result();
         $closed = count($query);
         return $closed; 
 
     }
     public function getTtrManPndgKen() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'PENDING' AND workzone = 'KEN')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'PENDING' AND workzone = 'KEN')")->result();
         $pending = count($query);
         return $pending; 
 
@@ -1886,16 +1935,21 @@ class Nossa_model extends CI_Model {
 
     // PGR
     // TEKNISI
-    public function getTekAsPgr() {
+    public function getTekAcPgr() {
         
         $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'PGR' AND jadwal = 'MASUK')")->result();
         $stokbu = count($query);
         return $stokbu; 
 
     }
-    public function getTekAcPgr() {
+    public function getTekAsPgr() {
         
-        $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'PGR' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
+        $query = $this->db->query("SELECT * 
+            FROM teknisi INNER JOIN nossa 
+            ON teknisi.nama = nossa.teknisi_myi
+            WHERE teknisi.sto = 'PGR' 
+            GROUP BY teknisi.crew")->result();
+        // $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'PGR' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
         $stokbu = count($query);
         return $stokbu; 
 
@@ -1950,21 +2004,21 @@ class Nossa_model extends CI_Model {
     // REPORTDATE
     public function getTtrManOrdPgr() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'ORDER' AND workzone = 'PGR')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'ORDER' AND workzone = 'PGR')")->result();
         $order = count($query);
         return $order; 
 
     }
     public function getTtrManClsdPgr() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'CLOSED' AND date_update >= DATE(NOW()) AND workzone = 'PGR')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'CLOSED' AND date_update >= DATE(NOW()) AND workzone = 'PGR')")->result();
         $closed = count($query);
         return $closed; 
 
     }
     public function getTtrManPndgPgr() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'PENDING' AND workzone = 'PGR')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'PENDING' AND workzone = 'PGR')")->result();
         $pending = count($query);
         return $pending; 
 
@@ -2075,16 +2129,21 @@ class Nossa_model extends CI_Model {
     
     // BTL
     // TEKNISI
-    public function getTekAsBtl() {
+    public function getTekAcBtl() {
         
         $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'BTL' AND jadwal = 'MASUK')")->result();
         $stokbu = count($query);
         return $stokbu; 
 
     }
-    public function getTekAcBtl() {
+    public function getTekAsBtl() {
         
-        $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'BTL' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
+        $query = $this->db->query("SELECT * 
+            FROM teknisi INNER JOIN nossa 
+            ON teknisi.nama = nossa.teknisi_myi
+            WHERE teknisi.sto = 'BTL' 
+            GROUP BY teknisi.crew")->result();
+        // $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'BTL' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
         $stokbu = count($query);
         return $stokbu; 
 
@@ -2139,21 +2198,21 @@ class Nossa_model extends CI_Model {
     // REPORTDATE
     public function getTtrManOrdBtl() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'ORDER' AND workzone = 'BTL')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'ORDER' AND workzone = 'BTL')")->result();
         $order = count($query);
         return $order; 
 
     }
     public function getTtrManClsdBtl() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'CLOSED' AND date_update >= DATE(NOW()) AND workzone = 'BTL')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'CLOSED' AND date_update >= DATE(NOW()) AND workzone = 'BTL')")->result();
         $closed = count($query);
         return $closed; 
 
     }
     public function getTtrManPndgBtl() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'PENDING' AND workzone = 'BTL')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'PENDING' AND workzone = 'BTL')")->result();
         $pending = count($query);
         return $pending; 
 
@@ -2264,16 +2323,21 @@ class Nossa_model extends CI_Model {
 
     // WNS
     // TEKNISI
-    public function getTekAsWns() {
+    public function getTekAcWns() {
         
         $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'WNS' AND jadwal = 'MASUK')")->result();
         $stokbu = count($query);
         return $stokbu; 
 
     }
-    public function getTekAcWns() {
+    public function getTekAsWns() {
         
-        $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'WNS' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
+        $query = $this->db->query("SELECT * 
+            FROM teknisi INNER JOIN nossa 
+            ON teknisi.nama = nossa.teknisi_myi
+            WHERE teknisi.sto = 'WNS' 
+            GROUP BY teknisi.crew")->result();
+        // $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'WNS' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
         $stokbu = count($query);
         return $stokbu; 
 
@@ -2328,21 +2392,21 @@ class Nossa_model extends CI_Model {
     // REPORTDATE
     public function getTtrManOrdWns() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'ORDER' AND workzone = 'WNS')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'ORDER' AND workzone = 'WNS')")->result();
         $order = count($query);
         return $order; 
 
     }
     public function getTtrManClsdWns() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'CLOSED' AND date_update >= DATE(NOW()) AND workzone = 'WNS')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'CLOSED' AND date_update >= DATE(NOW()) AND workzone = 'WNS')")->result();
         $closed = count($query);
         return $closed; 
 
     }
     public function getTtrManPndgWns() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'PENDING' AND workzone = 'WNS')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'PENDING' AND workzone = 'WNS')")->result();
         $pending = count($query);
         return $pending; 
 
@@ -2453,16 +2517,21 @@ class Nossa_model extends CI_Model {
 
     // WTS
     // TEKNISI
-    public function getTekAsWts() {
+    public function getTekAcWts() {
         
         $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'WTS' AND jadwal = 'MASUK')")->result();
         $stokbu = count($query);
         return $stokbu; 
 
     }
-    public function getTekAcWts() {
+    public function getTekAsWts() {
         
-        $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'WTS' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
+        $query = $this->db->query("SELECT * 
+            FROM teknisi INNER JOIN nossa 
+            ON teknisi.nama = nossa.teknisi_myi
+            WHERE teknisi.sto = 'WTS' 
+            GROUP BY teknisi.crew")->result();
+        // $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'WTS' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
         $stokbu = count($query);
         return $stokbu; 
 
@@ -2517,21 +2586,21 @@ class Nossa_model extends CI_Model {
     // REPORTDATE
     public function getTtrManOrdWts() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'ORDER' AND workzone = 'WTS')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'ORDER' AND workzone = 'WTS')")->result();
         $order = count($query);
         return $order; 
 
     }
     public function getTtrManClsdWts() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'CLOSED' AND date_update >= DATE(NOW()) AND workzone = 'WTS')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'CLOSED' AND date_update >= DATE(NOW()) AND workzone = 'WTS')")->result();
         $closed = count($query);
         return $closed; 
 
     }
     public function getTtrManPndgWts() {
         
-        $query = $this->db->query("SELECT * FROM nossa WHERE (jenis_tiket = 'TTR MANJA' AND status_tiket = 'PENDING' AND workzone = 'WTS')")->result();
+        $query = $this->db->query("SELECT * FROM nossa WHERE ((jenis_tiket = 'TTR MANJA' OR jenis_tiket = 'REPORTDATE') AND status_tiket = 'PENDING' AND workzone = 'WTS')")->result();
         $pending = count($query);
         return $pending; 
 

@@ -61,6 +61,8 @@ class Crew extends CI_Controller {
 
         $validation = $this->form_validation;
 
+	$validation->set_rules('crew','Crew','required|is_unique[teknisi.crew]');
+
         $validation->set_rules($crew->rules());
 
 
@@ -70,6 +72,7 @@ class Crew extends CI_Controller {
             $crew->save();
 
             $this->session->set_flashdata('success_simpan', 'Data berhasil disimpan');
+            redirect(site_url('crew'));
 
         }
 
@@ -114,6 +117,7 @@ class Crew extends CI_Controller {
             $crew->update();
 
             $this->session->set_flashdata('success_update', 'Data berhasil diupdate');
+	    redirect(site_url('crew'));
 
         }
 

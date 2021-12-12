@@ -40,10 +40,18 @@ class Crew2 extends CI_Controller {
 	if($this->session->userdata('role_id') == 2 ){
 		$area = $this->session->userdata('area');
         	$data["crew"] = $this->crew_model->getTekArea($area);
+        	$data["tekTotal"] = $this->crew_model->getTekTotalArea($area);
+        	$data["tekMasuk"] = $this->crew_model->getTekMasukArea($area);
+        	$data["tekLibur"] = $this->crew_model->getTekLiburArea($area);
+        	$data["tekIjin"] = $this->crew_model->getTekIjinArea($area);
 
         	$this->load->view("admin/mapping_teknisi/mapping_teknisi", $data);
         }else{
         	$data["crew"] = $this->crew_model->getAll();
+        	$data["tekTotal"] = $this->crew_model->getTekTotalAll();
+            $data["tekMasuk"] = $this->crew_model->getTekMasukAll();
+            $data["tekLibur"] = $this->crew_model->getTekLiburAll();
+            $data["tekIjin"] = $this->crew_model->getTekIjinAll();
 
         	$this->load->view("admin/mapping_teknisi/mapping_teknisi", $data);
         }
@@ -80,6 +88,8 @@ class Crew2 extends CI_Controller {
             $crew->update();
 
             $this->session->set_flashdata('success_update', 'Data berhasil diupdate');
+            redirect(site_url('crew2'));
+
 
         }
 

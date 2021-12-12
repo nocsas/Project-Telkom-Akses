@@ -68,12 +68,27 @@ class Nossa extends CI_Controller {
 
         $data['loginas'] = $this->db->query($queryLoginAs)->row_array();
         
+        //------------------------------------------------------
+        if($this->session->userdata('role_id') == 2 ){
+            $area = $this->session->userdata('area');
+                $data["real"] = $this->crew_model->getTekAreaMenuEdit($area);
+                $data["myi"] = $this->crew_model->getTekAreaMenuEdit($area);
+    
+                
+    
+            }else{
+                $data["real"] = $this->crew_model->getAll();
+                $data["myi"] = $this->crew_model->getAll();
+    
+               
+            }
+        //-------------------------------------------------
 
         if (!isset($no)) redirect('nossa');
 
-        $data["real"] = $this->crew_model->getAll();
+        // $data["real"] = $this->crew_model->getAll();
 
-        $data["myi"] = $this->crew_model->getAll();
+        // $data["myi"] = $this->crew_model->getAll();
 
        
 
@@ -90,6 +105,8 @@ class Nossa extends CI_Controller {
             $nossa->update();
 
             $this->session->set_flashdata('success_update', 'Data berhasil diupdate');
+            redirect(site_url('nossa'));
+
 
         }
 

@@ -99,10 +99,82 @@ class Crew_model extends CI_Model {
 
     public function getTekArea($area) {
 	
-	return $this->db->query("SELECT * FROM teknisi WHERE (sektor = '$area')")->result();
+// 	return $this->db->query("SELECT * FROM teknisi WHERE (sektor = '$area' AND jadwal = 'MASUK') ORDER BY jadwal DESC")->result();
+	return $this->db->query("SELECT * FROM teknisi WHERE (sektor = '$area' OR sektor = 'HD') ORDER BY jadwal DESC")->result();
 
 
     }
+    
+    public function getTekAreaMenuEdit($area) {
+	
+	return $this->db->query("SELECT * FROM teknisi WHERE (sektor = '$area' AND jadwal = 'MASUK') ORDER BY jadwal DESC")->result();
+// 	return $this->db->query("SELECT * FROM teknisi WHERE (sektor = '$area' OR sektor = 'HD') ORDER BY jadwal DESC")->result();
+
+
+    }
+    
+    public function getTekTotalArea($area) {
+        
+        $query = $this->db->query("SELECT * FROM teknisi WHERE (sektor = '$area')")->result();
+        $hitung = count($query);
+        return $hitung; 
+
+    }
+    public function getTekTotalAll() {
+        
+        $query = $this->db->query("SELECT * FROM teknisi")->result();
+        $hitung = count($query);
+        return $hitung; 
+
+    }
+
+    public function getTekMasukArea($area) {
+        
+        $query = $this->db->query("SELECT * FROM teknisi WHERE (sektor = '$area' AND jadwal = 'MASUK')")->result();
+        $hitung = count($query);
+        return $hitung; 
+
+    }
+
+    public function getTekMasukAll() {
+        
+        $query = $this->db->query("SELECT * FROM teknisi WHERE (jadwal = 'MASUK')")->result();
+        $hitung = count($query);
+        return $hitung; 
+
+    }
+
+    public function getTekLiburArea($area) {
+        
+        $query = $this->db->query("SELECT * FROM teknisi WHERE (sektor = '$area' AND jadwal = 'LIBUR')")->result();
+        $hitung = count($query);
+        return $hitung; 
+
+    }
+
+    public function getTekLiburAll() {
+        
+        $query = $this->db->query("SELECT * FROM teknisi WHERE (jadwal = 'LIBUR')")->result();
+        $hitung = count($query);
+        return $hitung; 
+
+    }
+    public function getTekIjinArea($area) {
+        
+        $query = $this->db->query("SELECT * FROM teknisi WHERE (sektor = '$area' AND jadwal = 'IJIN')")->result();
+        $hitung = count($query);
+        return $hitung; 
+
+    }
+
+    public function getTekIjinAll() {
+        
+        $query = $this->db->query("SELECT * FROM teknisi WHERE (jadwal = 'IJIN')")->result();
+        $hitung = count($query);
+        return $hitung; 
+
+    }
+
 
 
 
@@ -111,7 +183,7 @@ class Crew_model extends CI_Model {
 
         $post = $this->input->post();
 
-        $this->id       = uniqid();
+
 
         $this->crew     = $post["crew"];
 

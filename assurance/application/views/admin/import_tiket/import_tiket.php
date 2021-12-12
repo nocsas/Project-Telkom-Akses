@@ -26,11 +26,23 @@
 
                     <div class="container-fluid">
 
-                        <h1 class="mt-4">Import Tiket</h1>
+                        <h1 class="mt-4"></h1>
 
                         <ol class="breadcrumb mb-4">
 
-                            <li class="breadcrumb-item active">Import Tiket</li>
+<div class="col-xl-12 col-lg-12 col-md-12 col-12 pb-2 ">
+        <div class="statbox widget box box-shadow ">
+            <div class="widget-header p-3 bggradasi">
+                <div class="row ">
+                    <div class="col-xl-12 col-md-12 col-sm-12 col-12 ">
+                        <h2>IMPORT TIKET</h2>
+                        <small>Import Tiket From Data Nossa</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
                         </ol>
 
@@ -50,13 +62,13 @@
 
 						        <div class="table-responsive">
 
-							        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+							        <table class="table m-table table-sm table-striped table-bordered  table-hover" id="dataTable" width="100%" cellspacing="0">
 
-                                    <thead class="thead-light">
+                                    <thead class="thead-dark">
 
-									        <tr>
+									        <tr >
 
-												<th>No</th>
+												<th >No</th>
 
 										        <th>Incident</th>
 
@@ -65,6 +77,7 @@
 										        <th>Sektor</th>
 
 												<th>Service Number</th>
+											<th>Datek</th>
 
 												<th>Booking Date</th>
 
@@ -129,6 +142,12 @@
 											        <?php echo $nossa->service_no ?>
 
 										        </td>
+											<td>
+
+											        <?php echo $nossa->datek ?>
+
+										        </td>
+
 
 										        <td>
 
