@@ -70,6 +70,9 @@ for ($i=2; $i<=$jumlah_baris; $i++){
 	elseif($workzone=="KBU"){
 		$sktr="KBU";
 	}
+	elseif($workzone==""){
+		$sktr="NAS"; $workzone="NAS";
+	}
 	
 
 
@@ -88,29 +91,29 @@ for ($i=2; $i<=$jumlah_baris; $i++){
 		$cari_crew = mysqli_num_rows(mysqli_query($koneksi,"SELECT crew FROM teknisi WHERE crew='$assigned_to'")); 
 	if($incident != "" && $cari > 0){
 		if ($incident != "" && $waktu>=86400){
-			mysqli_query($koneksi, "UPDATE nossa SET  sektor='$sktr', incident='$incident', assigned_to='$assigned_to', booking_date='$booking_date' , jenis_tiket='REPORTDATE', status='$status', last_work_log='$last_work_log', date_update='$date', datek='$datek' WHERE nossa.incident='$incident' ");	
+			mysqli_query($koneksi, "UPDATE nossa SET  workzone='$workzone', sektor='$sktr', incident='$incident', assigned_to='$assigned_to', booking_date='$booking_date' , jenis_tiket='REPORTDATE', status='$status', last_work_log='$last_work_log', date_update='$date', datek='$datek' WHERE nossa.incident='$incident' ");	
 		} 
         elseif($incident != "" && $source=="PROACTIVE_TICKET"){
             if ($incident != "" && $summary1=="INFRA"){
-                mysqli_query($koneksi, "UPDATE nossa SET  jenis_tiket='INFRACARE', sektor='$sktr', incident='$incident', assigned_to='$assigned_to', booking_date='$booking_date' ,  status='$status', last_work_log='$last_work_log', date_update='$date' , datek='$datek' WHERE nossa.incident='$incident' ");
+                mysqli_query($koneksi, "UPDATE nossa SET  workzone='$workzone', jenis_tiket='INFRACARE', sektor='$sktr', incident='$incident', assigned_to='$assigned_to', booking_date='$booking_date' ,  status='$status', last_work_log='$last_work_log', date_update='$date' , datek='$datek' WHERE nossa.incident='$incident' ");
                 }
-			else {mysqli_query($koneksi, "UPDATE nossa SET  sektor='$sktr', incident='$incident', assigned_to='$assigned_to', booking_date='$booking_date' , jenis_tiket='SQM', status='$status', last_work_log='$last_work_log', date_update='$date' , datek='$datek' WHERE nossa.incident='$incident' ");		
+			else {mysqli_query($koneksi, "UPDATE nossa SET  workzone='$workzone', sektor='$sktr', incident='$incident', assigned_to='$assigned_to', booking_date='$booking_date' , jenis_tiket='SQM', status='$status', last_work_log='$last_work_log', date_update='$date' , datek='$datek' WHERE nossa.incident='$incident' ");		
             }
         }
 
         elseif($incident != "" && $customer_type=="HVC_PLATINUM" or $customer_type=="HVC_GOLD"){
             if($incident != "" && $assigned_by=="CUSTOMERASSIGNED"){
-                mysqli_query($koneksi, "UPDATE nossa SET  sektor='$sktr', incident='$incident', assigned_to='$assigned_to', booking_date='$booking_date' , jenis_tiket='HVC MANJA', status='$status', last_work_log='$last_work_log', date_update='$date' , datek='$datek' WHERE nossa.incident='$incident' ");			
+                mysqli_query($koneksi, "UPDATE nossa SET  workzone='$workzone', sektor='$sktr', incident='$incident', assigned_to='$assigned_to', booking_date='$booking_date' , jenis_tiket='HVC MANJA', status='$status', last_work_log='$last_work_log', date_update='$date' , datek='$datek' WHERE nossa.incident='$incident' ");			
             }
-			else {mysqli_query($koneksi, "UPDATE nossa SET  sektor='$sktr', incident='$incident', assigned_to='$assigned_to', booking_date='$booking_date' , jenis_tiket='HVC NON MANJA', status='$status', last_work_log='$last_work_log', date_update='$date' , datek='$datek' WHERE nossa.incident='$incident' ");			
+			else {mysqli_query($koneksi, "UPDATE nossa SET  workzone='$workzone', sektor='$sktr', incident='$incident', assigned_to='$assigned_to', booking_date='$booking_date' , jenis_tiket='HVC NON MANJA', status='$status', last_work_log='$last_work_log', date_update='$date' , datek='$datek' WHERE nossa.incident='$incident' ");			
             }
             }
 
             elseif($incident != "" && $customer_type!="HVC_PLATINUM" or $customer_type!="HVC_GOLD"){
                 if($incident != "" && $assigned_by=="CUSTOMERASSIGNED"){
-                    mysqli_query($koneksi, "UPDATE nossa SET  sektor='$sktr', incident='$incident', assigned_to='$assigned_to', booking_date='$booking_date' , jenis_tiket='TTR MANJA', status='$status', last_work_log='$last_work_log', date_update='$date' , datek='$datek' WHERE nossa.incident='$incident' ");			
+                    mysqli_query($koneksi, "UPDATE nossa SET  workzone='$workzone', sektor='$sktr', incident='$incident', assigned_to='$assigned_to', booking_date='$booking_date' , jenis_tiket='TTR MANJA', status='$status', last_work_log='$last_work_log', date_update='$date' , datek='$datek' WHERE nossa.incident='$incident' ");			
                 }
-                else {mysqli_query($koneksi, "UPDATE nossa SET  sektor='$sktr', incident='$incident', assigned_to='$assigned_to', booking_date='$booking_date' , jenis_tiket='TTR NON MANJA', status='$status', last_work_log='$last_work_log', date_update='$date' , datek='$datek' WHERE nossa.incident='$incident' ");			
+                else {mysqli_query($koneksi, "UPDATE nossa SET  workzone='$workzone', sektor='$sktr', incident='$incident', assigned_to='$assigned_to', booking_date='$booking_date' , jenis_tiket='TTR NON MANJA', status='$status', last_work_log='$last_work_log', date_update='$date' , datek='$datek' WHERE nossa.incident='$incident' ");			
                 }
                 }
 

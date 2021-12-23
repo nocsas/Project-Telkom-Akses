@@ -7,11 +7,11 @@
 
         <title>Import Data Nossa</title>
 
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
 
     </head>
 
-    <body>
+    <!-- <body>
 
         <style type="text/css">
 
@@ -178,6 +178,6 @@
 
         </table>
 
-    </body>
+    </body> -->
 
 </html>
