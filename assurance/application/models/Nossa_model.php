@@ -168,7 +168,7 @@ class Nossa_model extends CI_Model {
 
             'label' => 'Teknisi Myi',
 
-            'rules' => 'required'],
+            'rules' => ''],
 
 
 
@@ -176,15 +176,14 @@ class Nossa_model extends CI_Model {
 
             'label' => 'Kategori',
 
-            'rules' => 'required'],
-
+            'rules' => ''],
 
 
             ['field' => 'kendala',
 
             'label' => 'Kendala',
 
-            'rules' => 'required'],
+            'rules' => ''],
 
 
 
@@ -200,7 +199,7 @@ class Nossa_model extends CI_Model {
 
             'label' => 'Status Manja',
 
-            'rules' => 'required'],
+            'rules' => ''],
 
 
 
@@ -235,6 +234,26 @@ class Nossa_model extends CI_Model {
     }
 
 
+    public function getLastUpdate() {
+        
+     
+        //-----
+        // $results = array();
+         
+        $query = $this->db->query("SELECT `date_update` FROM `nossa` 
+        ORDER BY `nossa`.`date_update` DESC 
+        LIMIT 1");
+        
+        return $query->row(); 
+        
+        // if($query->num_rows() > 0) {
+        //     $results = $query->result();
+        // }
+        // return $results;
+        
+    }
+    
+    //----
 
     public function getAll() {
 
@@ -261,6 +280,19 @@ class Nossa_model extends CI_Model {
     public function getTiketArea($area) {
         
         return $this->db->query("SELECT * FROM nossa WHERE ((status_tiket <> 'CLOSED' OR status <> 'CLOSED' OR date_update >= DATE(NOW())) AND sektor = '$area')")->result();
+
+    }
+
+    // BLANK
+    public function getBlnkAll() {
+        
+        return $query = $this->db->query("SELECT * FROM nossa WHERE (status_tiket = '')")->result();
+
+    }
+
+    public function getBlnkArea($area) {
+        
+        return $query = $this->db->query("SELECT * FROM nossa WHERE (status_tiket = '' AND sektor = '$area')")->result();
 
     }
 
@@ -373,6 +405,62 @@ class Nossa_model extends CI_Model {
 
     }
 
+
+    public function updateOrder($no)
+
+    {
+
+        $post = $this->input->post();
+
+        $this->no               = $no;
+
+        $this->incident         = $post["incident"];
+
+        $this->workzone         = $post["workzone"];
+
+        $this->sektor           = $post["sektor"];
+
+        $this->service_no       = $post["service_no"];
+
+        $this->assigned_to      = $post["assigned_to"];
+
+        $this->booking_date     = $post["booking_date"];
+
+        $this->reported_date    = $post["reported_date"];
+
+        $this->status           = $post["status"];
+
+        $this->last_work_log    = $post["last_work_log"];
+
+        $this->jenis_tiket      = $post["jenis_tiket"];
+
+        $this->teknisi_nossa    = $post["teknisi_nossa"];
+
+        $this->real_teknisi     = $post["real_teknisi"];
+
+        $this->teknisi_myi      = $post["teknisi_myi"];
+
+        $this->kategori         = $post["kategori"];
+
+        $this->kendala          = $post["kendala"];
+
+        $this->status_tiket     = $post["status_tiket"];
+
+        $this->status_manja     = $post["status_manja"];
+
+        $this->keterangan       = $post["keterangan"];
+
+        $this->date_inpute      = $post["date_inpute"];
+
+        $this->date_update      = date('Y-m-d H:i:s');
+
+        return $this->db->update($this->_nossa, $this, array('no' => $no));
+
+    }
+
+
+
+
     public function delete($no)
 
     {
@@ -398,7 +486,7 @@ class Nossa_model extends CI_Model {
         
         $query = $this->db->query("SELECT * 
             FROM teknisi INNER JOIN nossa 
-            ON teknisi.nama = nossa.teknisi_myi
+            ON teknisi.nama = nossa.real_teknisi
             WHERE teknisi.sto = 'KBU' 
             GROUP BY teknisi.crew")->result();
         // $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'KBU' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
@@ -594,7 +682,7 @@ class Nossa_model extends CI_Model {
         
         $query = $this->db->query("SELECT * 
             FROM teknisi INNER JOIN nossa 
-            ON teknisi.nama = nossa.teknisi_myi
+            ON teknisi.nama = nossa.real_teknisi
             WHERE teknisi.sto = 'SMN' 
             GROUP BY teknisi.crew")->result();
         // $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'SMN' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
@@ -787,7 +875,7 @@ class Nossa_model extends CI_Model {
         
         $query = $this->db->query("SELECT * 
             FROM teknisi INNER JOIN nossa 
-            ON teknisi.nama = nossa.teknisi_myi
+            ON teknisi.nama = nossa.real_teknisi
             WHERE teknisi.sto = 'GOD' 
             GROUP BY teknisi.crew")->result();
         // $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'GOD' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
@@ -981,7 +1069,7 @@ class Nossa_model extends CI_Model {
         
         $query = $this->db->query("SELECT * 
             FROM teknisi INNER JOIN nossa 
-            ON teknisi.nama = nossa.teknisi_myi 
+            ON teknisi.nama = nossa.real_teknisi 
             WHERE teknisi.sto = 'PKM' 
             GROUP BY teknisi.crew")->result();
         // $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'PKM' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
@@ -1173,7 +1261,7 @@ class Nossa_model extends CI_Model {
         
         $query = $this->db->query("SELECT * 
             FROM teknisi INNER JOIN nossa 
-            ON teknisi.nama = nossa.teknisi_myi
+            ON teknisi.nama = nossa.real_teknisi
             WHERE teknisi.sto = 'KLS' 
             GROUP BY teknisi.crew")->result();
         // $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'KLS' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
@@ -1366,7 +1454,7 @@ class Nossa_model extends CI_Model {
         
         $query = $this->db->query("SELECT * 
             FROM teknisi INNER JOIN nossa 
-            ON teknisi.nama = nossa.teknisi_myi
+            ON teknisi.nama = nossa.real_teknisi
             WHERE teknisi.sto = 'KGD' 
             GROUP BY teknisi.crew")->result();
         // $query = $this->db->query("SELECT * FROM teknisi WHERE ((sto = 'KGD' OR sto = 'BPN') AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
@@ -1559,7 +1647,7 @@ class Nossa_model extends CI_Model {
         
         $query = $this->db->query("SELECT * 
             FROM teknisi INNER JOIN nossa 
-            ON teknisi.nama = nossa.teknisi_myi
+            ON teknisi.nama = nossa.real_teknisi
             WHERE teknisi.sto = 'BBS' 
             GROUP BY teknisi.crew")->result();
         // $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'BBS' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
@@ -1752,7 +1840,7 @@ class Nossa_model extends CI_Model {
         
         $query = $this->db->query("SELECT * 
             FROM teknisi INNER JOIN nossa 
-            ON teknisi.nama = nossa.teknisi_myi
+            ON teknisi.nama = nossa.real_teknisi
             WHERE teknisi.sto = 'KEN' 
             GROUP BY teknisi.crew")->result();
         // $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'KEN' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
@@ -1946,7 +2034,7 @@ class Nossa_model extends CI_Model {
         
         $query = $this->db->query("SELECT * 
             FROM teknisi INNER JOIN nossa 
-            ON teknisi.nama = nossa.teknisi_myi
+            ON teknisi.nama = nossa.real_teknisi
             WHERE teknisi.sto = 'PGR' 
             GROUP BY teknisi.crew")->result();
         // $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'PGR' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
@@ -2140,7 +2228,7 @@ class Nossa_model extends CI_Model {
         
         $query = $this->db->query("SELECT * 
             FROM teknisi INNER JOIN nossa 
-            ON teknisi.nama = nossa.teknisi_myi
+            ON teknisi.nama = nossa.real_teknisi
             WHERE teknisi.sto = 'BTL' 
             GROUP BY teknisi.crew")->result();
         // $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'BTL' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
@@ -2334,7 +2422,7 @@ class Nossa_model extends CI_Model {
         
         $query = $this->db->query("SELECT * 
             FROM teknisi INNER JOIN nossa 
-            ON teknisi.nama = nossa.teknisi_myi
+            ON teknisi.nama = nossa.real_teknisi
             WHERE teknisi.sto = 'WNS' 
             GROUP BY teknisi.crew")->result();
         // $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'WNS' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();
@@ -2528,7 +2616,7 @@ class Nossa_model extends CI_Model {
         
         $query = $this->db->query("SELECT * 
             FROM teknisi INNER JOIN nossa 
-            ON teknisi.nama = nossa.teknisi_myi
+            ON teknisi.nama = nossa.real_teknisi
             WHERE teknisi.sto = 'WTS' 
             GROUP BY teknisi.crew")->result();
         // $query = $this->db->query("SELECT * FROM teknisi WHERE (sto = 'WTS' AND (jadwal = 'LIBUR' OR jadwal = ''))")->result();

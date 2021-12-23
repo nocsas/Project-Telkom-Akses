@@ -34,7 +34,7 @@ class Auth extends CI_Controller
 
 		if($this->form_validation->run() == false){
 
-			$data['tittle'] = 'Login - Report Assurance TA';
+			$data['tittle'] = 'RAJA - Login';
 
 			$this->load->view('auth/templates/auth_header', $data);
 
@@ -191,7 +191,7 @@ class Auth extends CI_Controller
 
 			
 
-// 			$data['tittle'] = 'Registrasi';
+//			$data['tittle'] = 'RAJA - Add User';
 
 // 			$this->load->view('auth/templates/auth_header', $data);
 

@@ -256,10 +256,9 @@
 
 
 
-                        <div class="small">Logged in as:</div>
+                        <div class="small">Logged in as : <b><?= $loginas['role']; ?></b></div>
 
-                        <span class="mr-2 d-none d-lg-inline text-gray-600"><?= $loginas['role']; ?></span>
-
+                       <span class="mr-2 d-none d-lg-inline text-gray-500"> </span>
 
 
 

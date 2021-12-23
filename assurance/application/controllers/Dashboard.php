@@ -9,6 +9,7 @@ class Dashboard extends CI_Controller {
         is_logged_in();
 
         $this->load->model('nossa_model');
+        $this->load->model('leader_model');
         $this->load->library('form_validation');
         $this->load->library('session');
 
@@ -28,6 +29,8 @@ class Dashboard extends CI_Controller {
         
 
 	// KBU
+
+        $data["tlkbu"] = $this->leader_model->getTlKbu();
 
         $data["tknacstokbu"] = $this->nossa_model->getTekAcKbu();
 
@@ -117,6 +120,8 @@ class Dashboard extends CI_Controller {
         
         // SMN
 
+        $data["tlsmn"] = $this->leader_model->getTlSmn();
+
         $data["tknacstosmn"] = $this->nossa_model->getTekAcSmn();
 
         $data["tknasstosmn"] = $this->nossa_model->getTekAsSmn();
@@ -204,6 +209,9 @@ class Dashboard extends CI_Controller {
 
 
         //////GOD//
+
+        $data["tlgod"] = $this->leader_model->getTlGod();
+
         $data["tknacstogod"] = $this->nossa_model->getTekAcGod();
 
         $data["tknasstogod"] = $this->nossa_model->getTekAsGod();
@@ -291,6 +299,9 @@ class Dashboard extends CI_Controller {
 
 
         //////PKM//
+
+        $data["tlpkm"] = $this->leader_model->getTlPkm();
+
         $data["tknacstopkm"] = $this->nossa_model->getTekAcPkm();
 
         $data["tknasstopkm"] = $this->nossa_model->getTekAsPkm();
@@ -375,6 +386,9 @@ class Dashboard extends CI_Controller {
 
 
         //KLS
+
+        $data["tlkls"] = $this->leader_model->getTlKls();
+
         $data["tknacstokls"] = $this->nossa_model->getTekAcKls();
 
         $data["tknasstokls"] = $this->nossa_model->getTekAsKls();
@@ -459,6 +473,9 @@ class Dashboard extends CI_Controller {
 
 	
 	//KGD
+
+        $data["tlkgd"] = $this->leader_model->getTlKgd();
+
         $data["tknacstokgd"] = $this->nossa_model->getTekAcKgd();
 
         $data["tknasstokgd"] = $this->nossa_model->getTekAskgd();
@@ -544,6 +561,9 @@ class Dashboard extends CI_Controller {
         
 
 	//BBS
+
+        $data["tlbbs"] = $this->leader_model->getTlBbs();
+
         $data["tknacstobbs"] = $this->nossa_model->getTekAcBbs();
 
         $data["tknasstobbs"] = $this->nossa_model->getTekAsBbs();
@@ -629,6 +649,9 @@ class Dashboard extends CI_Controller {
 	
 
 	//KEN
+
+        $data["tlken"] = $this->leader_model->getTlKen();
+
         $data["tknacstoken"] = $this->nossa_model->getTekAcKen();
 
         $data["tknasstoken"] = $this->nossa_model->getTekAsKen();
@@ -714,6 +737,9 @@ class Dashboard extends CI_Controller {
 
  	
 	//PGR
+
+        $data["tlpgr"] = $this->leader_model->getTlPgr();
+
         $data["tknacstopgr"] = $this->nossa_model->getTekAcPgr();
 
         $data["tknasstopgr"] = $this->nossa_model->getTekAsPgr();
@@ -799,6 +825,9 @@ class Dashboard extends CI_Controller {
 
 	
 	//BTL
+
+        $data["tlbtl"] = $this->leader_model->getTlBtl();
+
         $data["tknacstobtl"] = $this->nossa_model->getTekAcBtl();
 
         $data["tknasstobtl"] = $this->nossa_model->getTekAsBtl();
@@ -884,6 +913,9 @@ class Dashboard extends CI_Controller {
 
 
 	//WNS
+
+        $data["tlwns"] = $this->leader_model->getTlWns();
+
         $data["tknacstowns"] = $this->nossa_model->getTekAcWns();
 
         $data["tknasstowns"] = $this->nossa_model->getTekAsWns();
@@ -969,6 +1001,9 @@ class Dashboard extends CI_Controller {
 
 
  	//WTS
+
+        $data["tlwts"] = $this->leader_model->getTlWts();
+
         $data["tknacstowts"] = $this->nossa_model->getTekAcWts();
 
         $data["tknasstowts"] = $this->nossa_model->getTekAsWts();

@@ -36,7 +36,17 @@
                 <div class="row ">
                     <div class="col-xl-12 col-md-12 col-sm-12 col-12 ">
                         <h2>MANAJEMEN TIKET</h2>
-                        <small>Update Kawal Tiket HI</small>
+                        <small>Update Kawal Tiket HI</small> <br>
+                        <small>Update Tiket Terakhir :
+                            <?php if( !empty($lastUpdate) ) {
+								foreach($lastUpdate as $row) {
+									echo $row;
+								}
+							} ?>
+							
+							<!--<?php foreach ($lastUpdate as $waktu):?>-->
+							<!--	<?php echo $waktu;?></small>-->
+							<!--<?php endforeach;?>-->
                     </div>
                 </div>
             </div>
@@ -56,6 +66,17 @@
 				        </div>
 
 				        <?php endif; ?>
+
+
+						<?php if ($this->session->flashdata('gagal_update')): ?>
+
+						<div class="alert alert-danger" role="alert">
+
+							<?php echo $this->session->flashdata('gagal_update'); ?>
+
+						</div>
+
+						<?php endif; ?>
 
 
 

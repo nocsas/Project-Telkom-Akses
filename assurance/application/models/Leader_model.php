@@ -2,23 +2,19 @@
 
 
 
-class Crew_model extends CI_Model {
+class Leader_model extends CI_Model {
 
-    private $_crew = "teknisi";
+    private $_leader = "leader";
 
 
 
     public $id;
 
-    public $crew;
-
-    public $nama;
-
     public $sto;
 
     public $sektor;
 
-    public $jadwal;
+    public $nama;
 
 
 
@@ -36,27 +32,11 @@ class Crew_model extends CI_Model {
 
 
 
-            ['field' => 'crew',
-
-            'label' => 'Crew',
-
-            'rules' => ''],
-
-
-
-            ['field' => 'nama',
-
-            'label' => 'Nama',
-
-            'rules' => 'required'],
-
-
-
             ['field' => 'sto',
 
-            'label' => 'Sto',
+            'label' => 'STO',
 
-            'rules' => 'required'],
+            'rules' => ''],
 
 
 
@@ -68,11 +48,11 @@ class Crew_model extends CI_Model {
 
 
 
-            ['field' => 'jadwal',
+            ['field' => 'nama',
 
-            'label' => 'Jadwal',
+            'label' => 'Nama',
 
-            'rules' => '']
+            'rules' => 'required']
 
 
 
@@ -84,7 +64,7 @@ class Crew_model extends CI_Model {
 
     public function getAll() {
 
-        return $this->db->get($this->_crew)->result();
+        return $this->db->get($this->_leader)->result();
 
     }
 
@@ -92,7 +72,7 @@ class Crew_model extends CI_Model {
 
     public function getById($id) {
 
-        return $this->db->get_where($this->_crew, ["id" => $id])->row();
+        return $this->db->get_where($this->_leader, ["id" => $id])->row();
 
     }
 
@@ -159,19 +139,76 @@ class Crew_model extends CI_Model {
         return $hitung; 
 
     }
-    public function getTekIjinArea($area) {
+
+    public function getTlKbu() {
         
-        $query = $this->db->query("SELECT * FROM teknisi WHERE (sektor = '$area' AND jadwal = 'IJIN')")->result();
-        $hitung = count($query);
-        return $hitung; 
+        return $query = $this->db->query("SELECT * FROM leader WHERE (sto = 'KBU')")->result();
 
     }
-
-    public function getTekIjinAll() {
+    
+    public function getTlSmn() {
         
-        $query = $this->db->query("SELECT * FROM teknisi WHERE (jadwal = 'IJIN')")->result();
-        $hitung = count($query);
-        return $hitung; 
+        return $query = $this->db->query("SELECT * FROM leader WHERE (sto = 'SMN')")->result();
+
+    }
+    
+    public function getTlGod() {
+        
+        return $query = $this->db->query("SELECT * FROM leader WHERE (sto = 'GOD')")->result();
+
+    }
+    
+    public function getTlPkm() {
+        
+        return $query = $this->db->query("SELECT * FROM leader WHERE (sto = 'PKM')")->result();
+
+    }
+    
+    public function getTlKls() {
+        
+        return $query = $this->db->query("SELECT * FROM leader WHERE (sto = 'KLS')")->result();
+
+    }
+    
+    public function getTlKgd() {
+        
+        return $query = $this->db->query("SELECT * FROM leader WHERE (sto = 'KGD')")->result();
+
+    }
+    
+    public function getTlBbs() {
+        
+        return $query = $this->db->query("SELECT * FROM leader WHERE (sto = 'BBS')")->result();
+
+    }
+    
+    public function getTlKen() {
+        
+        return $query = $this->db->query("SELECT * FROM leader WHERE (sto = 'KEN')")->result();
+
+    }
+    
+    public function getTlPgr() {
+        
+        return $query = $this->db->query("SELECT * FROM leader WHERE (sto = 'PGR')")->result();
+
+    }
+    
+    public function getTlBtl() {
+        
+        return $query = $this->db->query("SELECT * FROM leader WHERE (sto = 'BTL')")->result();
+
+    }
+    
+    public function getTlWns() {
+        
+        return $query = $this->db->query("SELECT * FROM leader WHERE (sto = 'WNS')")->result();
+
+    }
+    
+    public function getTlWts() {
+        
+        return $query = $this->db->query("SELECT * FROM leader WHERE (sto = 'WTS')")->result();
 
     }
 
@@ -184,18 +221,13 @@ class Crew_model extends CI_Model {
         $post = $this->input->post();
 
 
-
-        $this->crew     = $post["crew"];
-
-        $this->nama     = $post["nama"];
-
         $this->sto      = $post["sto"];
 
         $this->sektor   = $post["sektor"];
 
-        $this->jadwal   = $post["jadwal"];
+        $this->nama     = $post["nama"];
 
-        return $this->db->insert($this->_crew, $this);
+        return $this->db->insert($this->_leader, $this);
 
     }
 
@@ -207,17 +239,14 @@ class Crew_model extends CI_Model {
 
         $this->id       = $post["id"];
 
-        $this->crew     = $post["crew"];
-
-        $this->nama     = $post["nama"];
-
         $this->sto      = $post["sto"];
 
         $this->sektor   = $post["sektor"];
 
-        $this->jadwal   = $post["jadwal"];
+        $this->nama     = $post["nama"];
 
-        return $this->db->update($this->_crew, $this, array('id' => $post["id"]));
+
+        return $this->db->update($this->_leader, $this, array('id' => $post["id"]));
 
     }
 
@@ -227,7 +256,7 @@ class Crew_model extends CI_Model {
 
     {
 
-        return $this->db->delete($this->_crew, array("id" => $id));
+        return $this->db->delete($this->_leader, array("id" => $id));
 
     }
 

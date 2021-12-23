@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-class Crew extends CI_Controller {
+class Leader extends CI_Controller {
 
     public function __construct() {
 
@@ -16,7 +16,7 @@ class Crew extends CI_Controller {
 
         
 
-        $this->load->model('crew_model');
+        $this->load->model('leader_model');
 
         $this->load->library('form_validation');
 
@@ -37,9 +37,9 @@ class Crew extends CI_Controller {
         $data['loginas'] = $this->db->query($queryLoginAs)->row_array();
         
         
-        $data["crew"] = $this->crew_model->getAll();
+        $data["leader"] = $this->leader_model->getAll();
 
-        $this->load->view("admin/data_crew/data_crew", $data);
+        $this->load->view("admin/leader/data_leader", $data);
 
 
 
@@ -57,28 +57,26 @@ class Crew extends CI_Controller {
         $data['loginas'] = $this->db->query($queryLoginAs)->row_array();
         
 
-        $crew = $this->crew_model;
+        $leader = $this->leader_model;
 
         $validation = $this->form_validation;
 
-	    $validation->set_rules('crew','Crew','required|is_unique[teknisi.crew]');
-
-        $validation->set_rules($crew->rules());
+        $validation->set_rules($leader->rules());
 
 
 
         if ($validation->run()) {
 
-            $crew->save();
+            $leader->save();
 
             $this->session->set_flashdata('success_simpan', 'Data berhasil disimpan');
-            redirect(site_url('crew'));
+            redirect(site_url('leader'));
 
         }
 
 
 
-            $this->load->view("admin/data_crew/new_data_crew", $data);
+            $this->load->view("admin/leader/new_data_leader", $data);
 
             
 
@@ -100,36 +98,36 @@ class Crew extends CI_Controller {
 
         $data['loginas'] = $this->db->query($queryLoginAs)->row_array();
 
-        if (!isset($id)) redirect('crew');
+        if (!isset($id)) redirect('leader');
 
        
 
-        $crew = $this->crew_model;
+        $leader = $this->leader_model;
 
         $validation = $this->form_validation;
 
-        $validation->set_rules($crew->rules());
+        $validation->set_rules($leader->rules());
 
 
 
         if ($validation->run()) {
 
-            $crew->update();
+            $leader->update();
 
             $this->session->set_flashdata('success_update', 'Data berhasil diupdate');
-	    redirect(site_url('crew'));
+	    redirect(site_url('leader'));
 
         }
 
     
 
-        $data["crew"] = $crew->getByid($id);
+        $data["leader"] = $leader->getByid($id);
 
-        if (!$data["crew"]) show_404();
+        if (!$data["leader"]) show_404();
 
 
 
-        $this->load->view("admin/data_crew/edit_data_crew", $data);
+        $this->load->view("admin/leader/edit_data_leader", $data);
 
 
 
@@ -145,11 +143,11 @@ class Crew extends CI_Controller {
 
         
 
-        if ($this->crew_model->delete($id)) {
+        if ($this->leader_model->delete($id)) {
 
             $this->session->set_flashdata('success_delete', 'Data berhasil dihapus');
 
-            redirect(site_url('crew'));
+            redirect(site_url('leader'));
 
         }
 

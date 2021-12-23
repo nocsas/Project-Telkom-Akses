@@ -81,7 +81,7 @@ for ($i=2; $i<=$jumlah_baris; $i++){
 	$status_tiket   	= $data->val($i, 64);
 	// $status_manja 	 	= $data->val($i, );
     // $keterangan  		= $data->val($i, );
-    $date				= date("Y-m-d h:i:s");
+    $date				= date("Y-m-d H:i:s");
 
     //mengecek jika kolom kode produk pada template excel ada yang kosong
     $cari = mysqli_num_rows(mysqli_query($koneksi,"SELECT incident FROM nossa WHERE incident='$incident'"));

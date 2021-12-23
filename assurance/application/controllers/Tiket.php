@@ -13,6 +13,10 @@ class Tiket extends CI_Controller {
     }
 
     public function index() {
+        
+        $data['lastUpdate'] = $this->nossa_model->getLastUpdate();
+        //----
+        
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $role_id = $this->session->userdata('role_id');
                             

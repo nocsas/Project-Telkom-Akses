@@ -2,20 +2,27 @@
 
             <a class="navbar-brand" href="<?php echo site_url('dashboard') ?>">
 
-                <img src="<?= base_url('assets/img/raja-m.png');?>" alt="RAJA" height="42">
+                <img src="<?= base_url('assets/img/raja-logo-white-1.png');?>" alt="RAJA" height="42">
 
             </a>
 
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
 
-<div ><marquee class="py-3">
-        <a href="#" style="color: white;" >SELAMAT DATANG DI WEBSITE RAJA CREATE BY TELKOM AKSES YOGYAKARTA ( ADHITYA, RIZKY, AHMAD, SASONGKO )</a>
-</marquee></div>
+            
+            
+               <!--  <div class="navbar-nav w-100">-->
+                
+            	<div class="mx-auto order-0">
+                    <marquee >
+                        <a style="color: white;"><b>Dear Rekan... Telah ditambahkan menu MANAJEMEN LEADER untuk akses user TL dan SM.. Silahkan bagi TL yang terjadwal masuk untuk mengisikan nama disetiap STO yang dikawal.. Terimakasih :)</a>
+                    </marquee>
+                </div>
 
             <!-- Navbar Search-->
 
-            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" style="color:white">
-                <?php echo $this->session->userdata('name');?>
+            <form class="nav navbar-nav ml-auto justify-content-end" style="color:white; width:20%; text-align:right;">
+            <!--<form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" style="color:white">-->
+                <b><?php echo $this->session->userdata('name');?></b>
             </form>
 
             <!-- Navbar-->
@@ -34,7 +41,9 @@
 
                         <!-- <div class="dropdown-divider"></div> -->
 
-                        <a class="dropdown-item" href="<?= base_url('auth/logout'); ?>"  data-toggle="modal" data-target="#logoutModal">
+                        <!-- data-toggle="modal" data-target="#logoutModal"  -->
+
+                        <a class="dropdown-item" href="<?= base_url('auth/logout'); ?>"     >
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Logout</a>
 
                     </div>

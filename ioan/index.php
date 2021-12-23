@@ -3,6 +3,7 @@
 <html>
 
     <head>
+        <meta http-equiv="refresh" content="0;url=https://rajaistimewa.com/assurance/ImportTiket"></head>
 
         <title>Import Data Nossa</title>
 
@@ -37,7 +38,7 @@
         ?>
 
 
-	<a href="https://dbsjogja.com/assurance/index.php/ImportTiket"><i class="fas fa-plus"></i>Kembali</a>
+	<a href="https://rajaistimewa.com/assurance/index.php/ImportTiket"><i class="fas fa-plus"></i>Kembali</a>
         </br></br>
 
         <?php include  "koneksi.php" ?>

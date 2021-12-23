@@ -36,7 +36,17 @@
                 <div class="row ">
                     <div class="col-xl-12 col-md-12 col-sm-12 col-12 ">
                         <h2>MANAJEMEN TIKET</h2>
-                        <small>Kawal Tiket HI</small>
+                        <small>Kawal Tiket HI</small><br>
+                        <small>Update Tiket Terakhir :
+                            <?php if( !empty($lastUpdate) ) {
+								foreach($lastUpdate as $row) {
+									echo $row;
+								}
+							} ?>
+							
+							<!--<?php foreach ($lastUpdate as $waktu):?>-->
+							<!--	<?php echo $waktu;?></small>-->
+							<!--<?php endforeach;?>-->
                     </div>
                 </div>
             </div>
@@ -92,40 +102,25 @@
 												<th>No</th>
 
 										        <th>Incident</th>
-
 										        <th>Workzone</th>
-
-										        <th>Sektor</th>
-
-												<th>Service Number</th>
-											<th>Datek</th>
-
 												<th>Booking Date</th>
-
-										        <th>Reported Date</th>
-
-										        <th>Status</th>
-
-										        <th>Jenis Tiket</th>
-
-												<th>Teknisi_nossa</th>
+												<th>Reported Date</th>
+												<th>Jenis Tiket</th>
 
 												<th>Real Teknisi</th>
-
 												<th>Teknisi Myi</th>
-
-										        <th>Kategori</th>
-
-										        <th>Kendala</th>
-
-										        <th>Status Tiket</th>
-
+												<th>Kategori</th>
+												<th>Kendala</th>
+												<th>Status Tiket</th>
 												<th>Status Manja</th>
-
 												<th>Keterangan</th>
 
-										        <th>Action</th>
 
+												<th>Service Number</th>
+												<th>Datek</th>
+												<th>Sektor</th>
+												<th>Teknisi_nossa</th>
+												<th>Status</th>
 									        </tr>
 
 								        </thead>
@@ -143,8 +138,8 @@
 												</td>
 
 										        <td>
-
-											        <?php echo $nossa->incident ?>
+													<a href="<?php echo site_url('nossa/edit/'.$nossa->no) ?>">
+											        <?php echo $nossa->incident ?></a>
 
 										        </td>
 
@@ -153,102 +148,96 @@
 											        <?php echo $nossa->workzone ?>
 
 										        </td>
+												<td>
 
-										        <td>
+													<?php echo $nossa->booking_date ?>
 
-											        <?php echo $nossa->sektor ?>
-
-										        </td>
-
-										        <td>
-
-											        <?php echo $nossa->service_no ?>
-
-										        </td>
-											
-											<td>
-											        <?php echo $nossa->datek ?>
-										        </td>
-
-										        <td>
-
-											        <?php echo $nossa->booking_date ?>
-
-										        </td>
-
-										        <td>
+												</td>
+												<td>
 
 											        <?php echo $nossa->reported_date ?>
 
 										        </td>
-
-										        <td>
-
-											        <?php echo $nossa->status ?>
-
-										        </td>
-
-										        <td>
+												<td>
 
 											        <?php echo $nossa->jenis_tiket ?>
 
 										        </td>
 
-										        <td>
 
-											        <?php echo $nossa->teknisi_nossa ?>
+
+
+												<td>
+
+													<?php echo $nossa->real_teknisi ?>
+
+												</td>
+												<td>
+
+													<?php echo $nossa->teknisi_myi ?>
+
+												</td>
+												<td>
+
+													<?php echo $nossa->kategori ?>
+
+												</td>
+												<td>
+
+												<?php echo $nossa->kendala ?>
+
+												</td>
+
+												<td>
+
+													<?php echo $nossa->status_tiket ?>
+
+												</td>
+												<td>
+
+												<?php echo $nossa->status_manja ?>
+
+												</td>
+												<td>
+
+													<?php echo $nossa->keterangan ?>
+
+												</td>
+
+
+												<td>
+
+													<?php echo $nossa->service_no ?>
+
+												</td>
+										        
+											
+												<td>
+											        <?php echo $nossa->datek ?>
+										        </td>
+												<td>
+
+											        <?php echo $nossa->sektor ?>
+
+										        </td>
+												<td>
+
+												<?php echo $nossa->teknisi_nossa ?>
+
+												</td>
+												<td>
+
+											        <?php echo $nossa->status ?>
 
 										        </td>
 
-										        <td>
-
-											        <?php echo $nossa->real_teknisi ?>
-
-										        </td>
-
-										        <td>
-
-											        <?php echo $nossa->teknisi_myi ?>
-
-										        </td>
-
-										        <td>
-
-											        <?php echo $nossa->kategori ?>
-
-										        </td>
-
-										        <td>
-
-											        <?php echo $nossa->kendala ?>
-
-										        </td>
-
-										        <td>
-
-											        <?php echo $nossa->status_tiket ?>
-
-										        </td>
-
-										        <td>
-
-											        <?php echo $nossa->status_manja ?>
-
-										        </td>
-
-										        <td>
-
-											        <?php echo $nossa->keterangan ?>
-
-										        </td>
-
-										        <td width="250">
+										        <!-- <td width="250">
 
 											        <a href="<?php echo site_url('nossa/edit/'.$nossa->no) ?>"
 
 											        class="btn btn-small"><i class="fas fa-edit"></i>Edit</a>
 
-										        </td>
+										        </td> -->
 
 									        </tr>
 

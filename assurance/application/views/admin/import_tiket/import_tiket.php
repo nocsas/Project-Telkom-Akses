@@ -36,7 +36,17 @@
                 <div class="row ">
                     <div class="col-xl-12 col-md-12 col-sm-12 col-12 ">
                         <h2>IMPORT TIKET</h2>
-                        <small>Import Tiket From Data Nossa</small>
+                        <small>Import Tiket From Data Nossa</small> <br>
+                        <small>Update Tiket Terakhir :
+                            <?php if( !empty($lastUpdate) ) {
+								foreach($lastUpdate as $row) {
+									echo $row;
+								}
+							} ?>
+							
+							<!--<?php foreach ($lastUpdate as $waktu):?>-->
+							<!--	<?php echo $waktu;?></small>-->
+							<!--<?php endforeach;?>-->
                     </div>
                 </div>
             </div>
@@ -52,9 +62,20 @@
 
 				        <div class="card mb-4">
 
-                            <div class="card-header">
+                            <div class="card-header" >
 
-						        <a href="https://dbsjogja.com/ioan"><i class="fas fa-plus"></i> Import tiket</a>
+								<form method="post" enctype="multipart/form-data" action="https://rajaistimewa.com/ioan/upload3.php">
+
+									Upload File Data Nossa .xls 
+
+									<input name="datanossa" type="file" required="required">
+
+									<input name="upload" type="submit" value="import">
+
+								</form></br></br>
+
+								<a target="_blank" href="https://rajaistimewa.com/ioan/export.php" style="color:white; width:20%; text-align:right;"><button>DOWNLOAD</button></a>
+
 
 					        </div>
 
@@ -77,7 +98,8 @@
 										        <th>Sektor</th>
 
 												<th>Service Number</th>
-											<th>Datek</th>
+											
+												<th>Datek</th>
 
 												<th>Booking Date</th>
 
@@ -102,6 +124,10 @@
 												<th>Status Manja</th>
 
 												<th>Keterangan</th>
+
+												<th>Date Input</th>
+
+												<th>Date update</th>
 
 									        </tr>
 
@@ -142,7 +168,8 @@
 											        <?php echo $nossa->service_no ?>
 
 										        </td>
-											<td>
+											
+												<td>
 
 											        <?php echo $nossa->datek ?>
 
@@ -220,6 +247,19 @@
 											        <?php echo $nossa->keterangan ?>
 
 										        </td>
+												
+
+												<td>
+
+													<?php echo $nossa->date_inpute ?> 
+
+												</td>
+
+												<td>
+													
+													<?php echo $nossa->date_update ?> 
+												
+												</td>
 
 									        </tr>
 

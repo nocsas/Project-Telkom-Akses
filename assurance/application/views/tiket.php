@@ -40,7 +40,17 @@
                 <div class="row ">
                     <div class="col-xl-12 col-md-12 col-sm-12 col-12 ">
                         <h2>DATA TIKET</h2>
-                        <small>All Data Tiket HI</small>
+                        <small>All Data Tiket HI</small><br>
+                        <small>Update Tiket Terakhir :
+                            <?php if( !empty($lastUpdate) ) {
+								foreach($lastUpdate as $row) {
+									echo $row;
+								}
+							} ?>
+							
+							<!--<?php foreach ($lastUpdate as $waktu):?>-->
+							<!--	<?php echo $waktu;?></small>-->
+							<!--<?php endforeach;?>-->
                     </div>
                 </div>
             </div>

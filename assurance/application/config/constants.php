@@ -89,4 +89,4 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 | Constant for site
 |--------------------------------------------------------------------------
 */
-define('SITE_NAME', 'Report Assurance');
+define('SITE_NAME', 'RAJA');

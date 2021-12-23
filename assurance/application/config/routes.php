@@ -58,6 +58,6 @@ $route['translate_uri_dashes'] = FALSE;
 | URI ROUTING ADMIN
 | -------------------------------------------------------------------------
 */
-$route['kawal_tl'] = 'admin/kawal_tiket_tl/kawal_tiket_tl';
-$route['data_crew'] = 'admin/data_crew/data_crew';
+$route['kawal_order'] = 'nossa/indexOrder';
+
 

@@ -32,7 +32,8 @@
 
                             <div class="text-center">
 
-                                <h1 class="h4 text-gray-900 mb-4"><img src="<?= base_url('assets/img/raja.png');?>" alt="RAJA" height="62"></br></h1>
+                                <img src="<?= base_url('assets/img/raja.png');?>" class="img-fluid" alt="Responsive image" height="62%"></br></h1>
+                                <!--<h1 class="h4 text-gray-900 mb-4"><img src="<?= base_url('assets/img/raja.png');?>" alt="RAJA" height="62"></br></h1>-->
 
                                 <h1 class="h4 text-gray-900 mb-4"><b>LEVEL UP</b></br>work smart to provide the best service</br></h1>
 
@@ -71,7 +72,7 @@
                                 
                                 <br>
 
-                                <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-sign-in-alt fa-fw"></i>
+                                <button style="background-color:red;" type="submit" class="btn btn-primary btn-block"><i class="fas fa-sign-in-alt fa-fw"></i>
 
                                     Login
 

@@ -1,3 +1,3 @@
 <?php
-     $koneksi = mysqli_connect("dbsjogja.com","u1421123","@Telkom_123", "u1421123_IOAN");
+     $koneksi = mysqli_connect("localhost","u1068299_ioan","Telkom@135", "u1068299_IOAN");
 ?>

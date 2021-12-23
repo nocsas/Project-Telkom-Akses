@@ -38,7 +38,7 @@
 
     <style type="text/css">
     .bg-login{
-        background-image: url(<?php echo base_url("assets/img/telkomakses.png");?>);
+        background-image: url(<?php echo base_url("assets/img/bg.jpg");?>);
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
